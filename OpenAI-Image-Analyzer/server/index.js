@@ -16,6 +16,11 @@ app.use(
 );
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log("Incoming request:", req.method, req.path, req.headers);
+  next();
+});
+
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
 const storage = multer.diskStorage({
