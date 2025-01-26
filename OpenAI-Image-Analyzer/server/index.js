@@ -7,7 +7,12 @@ import OpenAI from "openai";
 
 const app = express();
 configDotenv();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://ai-image-blue.vercel.app/",
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });

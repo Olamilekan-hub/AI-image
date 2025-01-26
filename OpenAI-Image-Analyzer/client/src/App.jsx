@@ -33,7 +33,7 @@ const App = () => {
         method: "POST",
         body: formData,
       };
-      const response = await fetch("http://localhost:8000/upload", options);
+      const response = await fetch("https://ai-image-production.up.railway.app/upload", options);
       const data = response.json();
       console.log(data);
     } catch (error) {
@@ -63,7 +63,7 @@ const App = () => {
           "Content-Type": "application/json",
         },
       };
-      const response = await fetch("http://localhost:8000/openai", options);
+      const response = await fetch("https://ai-image-production.up.railway.app/openai", options);
       const data = await response.text();
       console.log(data);
       setResponse(data);
