@@ -24,10 +24,11 @@ const App = () => {
   };
 
   const uploadImage = async (e) => {
+    setResponse("");
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     setImage(e.target.files[0]);
-    e.target.value = null;
+    // e.target.value = null;
 
     try {
       const options = {
