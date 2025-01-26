@@ -10,6 +10,7 @@ configDotenv();
 app.use(
   cors({
     origin: "https://ai-image-blue.vercel.app/",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
   })
 );
@@ -19,7 +20,11 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public");
+    const dir = "./public";
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+    cb(null, dir);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
@@ -35,6 +40,16 @@ app.post("/upload", (req, res) => {
     if (err) {
       console.log(err);
       return res.status(500).json(err);
+    }
+    if (err) {
+      console.error("Multer error:", err); // Debug multer errors
+      return res.status(500).json({ error: "File upload failed!" });
+    }
+
+    // Check if req.file exists
+    if (!req.file) {
+      console.error("No file provided in the request"); // Debug missing file
+      return res.status(400).json({ error: "No file uploaded!" });
     }
     filePath = req.file.path;
   });
