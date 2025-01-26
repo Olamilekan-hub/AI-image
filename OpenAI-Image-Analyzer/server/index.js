@@ -7,13 +7,25 @@ import OpenAI from "openai";
 
 const app = express();
 configDotenv();
+
 app.use(
   cors({
-    origin: "https://ai-image-blue.vercel.app/",
-    // origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "https://ai-image-blue.vercel.app", // Your deployed frontend
+        "http://localhost:5173", // Local development
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true); // Allow request
+      } else {
+        callback(new Error("Not allowed by CORS")); // Reject request
+      }
+    },
     methods: ["GET", "POST"],
+    credentials: true,
   })
 );
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -56,7 +68,6 @@ app.post("/upload", (req, res) => {
     res.status(200).json({ filePath: req.file.path });
   });
 });
-
 
 app.post("/openai", async (req, res) => {
   try {
