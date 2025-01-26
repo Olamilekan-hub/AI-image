@@ -39,8 +39,12 @@ const App = () => {
         options
       );
       const data = response.json();
-      setFilePath(data.filePath);
-      console.log(data);
+      if (data.filePath) {
+        setFilePath(data.filePath);
+        console.log("File path:", data.filePath);
+      } else {
+        throw new Error("No file path in response");
+      }
     } catch (error) {
       setError("Error: Something went wrong! Please try again");
       console.error(error);
