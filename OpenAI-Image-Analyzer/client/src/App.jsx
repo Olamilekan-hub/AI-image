@@ -5,6 +5,7 @@ const App = () => {
   const [value, setValue] = useState("");
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
+  const [filePath, setFilePath] = useState("");
   const [loading, setLoading] = useState(false);
 
   const surpriseOptions = [
@@ -33,8 +34,12 @@ const App = () => {
         method: "POST",
         body: formData,
       };
-      const response = await fetch("https://ai-image-production.up.railway.app/upload", options);
+      const response = await fetch(
+        "https://ai-image-production.up.railway.app/upload",
+        options
+      );
       const data = response.json();
+      setFilePath(data.filePath);
       console.log(data);
     } catch (error) {
       setError("Error: Something went wrong! Please try again");
@@ -58,12 +63,16 @@ const App = () => {
         method: "POST",
         body: JSON.stringify({
           message: value,
+          filePath,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       };
-      const response = await fetch("https://ai-image-production.up.railway.app/openai", options);
+      const response = await fetch(
+        "https://ai-image-production.up.railway.app/openai",
+        options
+      );
       const data = await response.text();
       console.log(data);
       setResponse(data);

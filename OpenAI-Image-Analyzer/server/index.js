@@ -38,6 +38,7 @@ app.post("/upload", (req, res) => {
     }
     filePath = req.file.path;
   });
+  res.status(200).json({ filePath: req.file.path });
 });
 
 app.post("/openai", async (req, res) => {
