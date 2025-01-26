@@ -36,10 +36,12 @@ const App = () => {
         body: formData,
       };
       const response = await fetch(
-        "https://ai-image-production.up.railway.app/upload",
+        // "https://ai-image-production.up.railway.app/upload",
+        "http://localhost:8000/upload",
         options
       );
-      const data = response.json();
+      const data = await response.json();
+      console.log(data);
       if (data.filePath) {
         setFilePath(data.filePath);
         console.log("File path:", data.filePath);
