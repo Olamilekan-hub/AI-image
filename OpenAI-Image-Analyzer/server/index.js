@@ -21,7 +21,7 @@ app.use(
         callback(new Error("Not allowed by CORS")); // Reject request
       }
     },
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
 );
