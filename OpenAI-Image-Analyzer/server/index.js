@@ -73,6 +73,11 @@ app.post("/openai", async (req, res) => {
   try {
     const prompt = req.body.message;
 
+    if (!filePath) {
+      console.error("File path not set");
+      return res.status(400).json({ error: "No file uploaded!" });
+    }
+
     const imageAsBase64 = fs.readFileSync(filePath, "base64");
 
     const response = await openai.chat.completions.create({
