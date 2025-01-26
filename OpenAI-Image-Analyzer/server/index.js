@@ -65,6 +65,7 @@ app.post("/upload", (req, res) => {
 
     console.log("File uploaded successfully:", req.file);
     filePath = req.file.path; // Save the file path globally
+    console.log("File path after upload:", req.file.path);
     res.status(200).json({ filePath: req.file.path });
   });
 });
