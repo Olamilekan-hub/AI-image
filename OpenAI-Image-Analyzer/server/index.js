@@ -80,6 +80,7 @@ app.post("/openai", async (req, res) => {
     }
 
     const imageAsBase64 = fs.readFileSync(filePath, "base64");
+    console.log("Image as base64:", imageAsBase64);
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
