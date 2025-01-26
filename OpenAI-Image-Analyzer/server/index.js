@@ -38,23 +38,20 @@ let filePath;
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     if (err) {
-      console.log(err);
-      return res.status(500).json(err);
-    }
-    if (err) {
-      console.error("Multer error:", err); // Debug multer errors
+      console.error("Multer error:", err);
       return res.status(500).json({ error: "File upload failed!" });
     }
-
-    // Check if req.file exists
     if (!req.file) {
-      console.error("No file provided in the request"); // Debug missing file
+      console.error("No file provided in the request");
       return res.status(400).json({ error: "No file uploaded!" });
     }
-    filePath = req.file.path;
+
+    console.log("File uploaded successfully:", req.file);
+    filePath = req.file.path; // Save the file path globally
+    res.status(200).json({ filePath: req.file.path });
   });
-  res.status(200).json({ filePath: req.file.path });
 });
+
 
 app.post("/openai", async (req, res) => {
   try {
