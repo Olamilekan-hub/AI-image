@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import LoadingPage from "./LoadingPage";
+import About from "../components/About";
+import Contact from "../components/Contact";
 
 const Home = () => {
   return (
@@ -9,7 +11,7 @@ const Home = () => {
 
       {/* Main Content */}
       {/* {!isLoading && ( */}
-      {/* <div className="min-h-screen flex items-center justify-center bg-black relative">
+      {/* <div className="min-h-screen flex items-center justify-center bg-gray-900 relative">
         <div className="text-center">
           <h1 className="text-5xl font-bold text-blue-600 font-lobster">
             Welcome!
@@ -22,6 +24,8 @@ const Home = () => {
       {/* )} */}
       <Header />
       <Hero/>
+      <About/>
+      <Contact/>
     </div>
   );
 };
