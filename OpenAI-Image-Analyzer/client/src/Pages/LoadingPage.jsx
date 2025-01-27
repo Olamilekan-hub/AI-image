@@ -13,7 +13,7 @@ const LoadingPage = () => {
       {isLoading && (
         <div
           id="loading-bg"
-          className="loading-bg fixed inset-0 bg-blue-600 flex items-center justify-center z-50"
+          className="loading-bg fixed inset-0 bg-gray-900 flex items-center justify-center z-50"
           // style={{ transition: "transform 1.5s" }}
         >
           <h1 className="text-white text-6xl font-bold flex font-lobster">
