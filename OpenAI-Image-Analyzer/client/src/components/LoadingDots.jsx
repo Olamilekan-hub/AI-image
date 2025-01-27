@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const LoadingDots = () => {
@@ -17,21 +17,21 @@ const LoadingDots = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center space-x-1 text-4xl">
+    <div className="flex justify-center items-center space-x-1 text-4xl font-lobster">
       <span
-        className="inline-block text-white font-bold text-4xl"
+        className="inline-block text-white font-bold text-4xl font-lobster"
         ref={(el) => (dotsRef.current[0] = el)}
       >
         .
       </span>
       <span
-        className="inline-block text-white font-bold text-4xl"
+        className="inline-block text-white font-bold text-4xl font-lobster"
         ref={(el) => (dotsRef.current[1] = el)}
       >
         .
       </span>
       <span
-        className="inline-block text-white font-bold text-4xl"
+        className="inline-block text-white font-bold text-4xl font-lobster"
         ref={(el) => (dotsRef.current[2] = el)}
       >
         .
