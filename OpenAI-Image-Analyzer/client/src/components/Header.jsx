@@ -9,7 +9,7 @@ const Header = () => {
           SpectraCore<span className="r text-sm align-top">&reg;</span>
         </h1>
 
-        <ul className="border-b-[0.5px] md:border-b-1 py-2 px-2 md:px-7 rounded-full shadow-md space-x-2 md:space-x-7 flex justify-center items-center hidden md:block">
+        <ul className="border-b-[0.5px] md:border-b-1 py-2 px-2 md:px-7 rounded-full shadow-md space-x-2 md:space-x-7 lg:flex justify-center items-center hidden">
           <li className="border-r-1 text-sm md:text-md pr-2 md:pr-7 border-white">
             <a href="#about">Docs</a>
           </li>

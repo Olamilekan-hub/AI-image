@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-black text-center gap-5">
-      <h1 className="text-7xl font-bold cursor-text">
+    <div className="flex flex-col items-center justify-center h-screen text-black text-center gap-2 md:gap-5 px-5">
+      <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold cursor-text">
         {Array.from("Smarter Insights, Clear Vision").map(
           (char, index) => (
             <span
@@ -13,7 +13,7 @@ const Hero = () => {
           )
         )}
       </h1>
-      <h1 className="text-7xl font-bold cursor-text">
+      <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold cursor-text">
         {Array.from("with SpectraCore").map(
           (char, index) => (
             <span
