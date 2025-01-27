@@ -34,12 +34,12 @@ const Hero = () => {
           </Link>
         </button>
 
-        <p id="CA" className="text-gray-700 font-semibold text-md md:text-lg">
+        <p id="CA" className="text-gray-700 font-semibold text-sm sm:text-md md:text-lg">
           Try $IRISAI<span className="r text-sm align-top">&reg;</span> CA: CyQr3CGBDd4gTncX4qSRMB4wQqQyRLY5iDgKHjhXpump
         </p>
 
-        <h1 id="bottom" className="fixed bottom-0 left-0 text-xl md:text-2xl lg:text-3xl font-semibold hover:bg-white hover:text-black py-1 px-2 md:px-3 rounded-r-full border-1 md:border-2 border-white text-white rounded-bl-full bg-black transition duration-300 cursor-pointer">
-          SpectraCore<span className="r text-lg align-top">&reg;</span>
+        <h1 id="bottom" className="fixed bottom-0 left-0 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold hover:bg-white hover:text-black py-1 px-2 md:px-3 rounded-r-full border-1 md:border-2 border-white text-white rounded-bl-full bg-black transition duration-300 cursor-pointer">
+          SpectraCore<span className="r text-sm md:text-lg align-top">&reg;</span>
         </h1>
     </div>
   );
