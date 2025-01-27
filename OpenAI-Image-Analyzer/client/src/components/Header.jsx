@@ -8,7 +8,7 @@ const Header = () => {
         <ul>
           <li><a href="#about">about</a></li>
         </ul>
-      <button className="bg-white py-2 px-3 rounded-full shadow-md text-black font-semibold hover:bg-black hover:text-white  focus:bg-black focus:text-white transition duration-300">
+      <button className="bg-white py-2 px-3 rounded-full shadow-md text-black font-semibold  focus:bg-black focus:text-white hover:bg-black hover:text-white transition duration-300">
       <Link to="/Analyze">Try $IRISAI</Link>
       </button>
       </div>
