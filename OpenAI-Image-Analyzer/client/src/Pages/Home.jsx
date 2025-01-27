@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 import LoadingPage from "./LoadingPage";
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       </div> */}
       {/* )} */}
       <Header />
+      <Hero/>
     </div>
   );
 };

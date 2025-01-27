@@ -7,7 +7,7 @@ const LoadingDots = () => {
   useEffect(() => {
     // Animate the dots
     gsap.to(dotsRef.current, {
-      y: -10, // Move the dots up
+      x: -15, // Move the dots up
       repeat: -1,
       yoyo: true,
       stagger: 0.2, // Each dot animates in sequence
@@ -17,21 +17,21 @@ const LoadingDots = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center space-x-1 text-4xl font-lobster">
+    <div className="flex justify-center items-center space-x-1 text-6xl font-lobster">
       <span
-        className="inline-block text-white font-bold text-4xl font-lobster"
+        className="inline-block text-white font-bold text-6xl font-lobster"
         ref={(el) => (dotsRef.current[0] = el)}
       >
         .
       </span>
       <span
-        className="inline-block text-white font-bold text-4xl font-lobster"
+        className="inline-block text-white font-bold text-6xl font-lobster"
         ref={(el) => (dotsRef.current[1] = el)}
       >
         .
       </span>
       <span
-        className="inline-block text-white font-bold text-4xl font-lobster"
+        className="inline-block text-white font-bold text-6xl font-lobster"
         ref={(el) => (dotsRef.current[2] = el)}
       >
         .
