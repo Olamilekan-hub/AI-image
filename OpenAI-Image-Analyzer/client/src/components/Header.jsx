@@ -9,7 +9,7 @@ const Header = () => {
           SpectraCore<span className="r text-sm align-top">&reg;</span>
         </h1>
 
-        <ul className="border-b-[0.5px] md:border-b-1 py-2 px-2 md:px-7 rounded-full shadow-md space-x-2 md:space-x-7 flex justify-center items-center hidden lg:block">
+        <ul className="border-b-[0.5px] md:border-b-1 py-2 px-2 md:px-7 rounded-full shadow-md space-x-2 md:space-x-7 flex justify-center items-center hidden md:block">
           <li className="border-r-1 text-sm md:text-md pr-2 md:pr-7 border-white">
             <a href="#about">Docs</a>
           </li>
@@ -20,14 +20,19 @@ const Header = () => {
             <a href="#contact">Contact Us</a>
           </li>
           <li className="">
-            <a href="https://x.com/"><FaXTwitter /></a>
+            <a href="https://x.com/">
+              <FaXTwitter />
+            </a>
           </li>
         </ul>
 
         <button className="hover:bg-white md:text-sm py-1 md:py-2 px-1.5 md:px-3 rounded-full shadow-md hover:text-black font-semibold  border-white border-1 md:border-2 bg-black text-white transition duration-300">
-          <Link to="/Analyze">Try $IRISAI<span className="r text-sm align-top">&reg;</span></Link>
+          <Link to="/Analyze">
+            Try $IRISAI
+            <span className="r text-[12px] md:text-sm align-top">&reg;</span>
+          </Link>
         </button>
-        </div>
+      </div>
     </header>
   );
 };
