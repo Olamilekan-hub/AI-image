@@ -1,6 +1,40 @@
 // import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ImageAnalyzer from "./Pages/ImageAnalyzer";
+import Home from "./Pages/Home";
 
-import ImageAnalyzer from "./Pages/ImageAnalyzer"
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Analyze" element={<ImageAnalyzer />} />
+      </Routes>
+    </Router>
+  );
+};
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const App = () => {
 //   const [image, setImage] = useState(null);
@@ -210,13 +244,3 @@ import ImageAnalyzer from "./Pages/ImageAnalyzer"
 //   );
 // };
 // export default App;
-
-
-const App = () => {
-  return (
-    <div>
-      <ImageAnalyzer />
-    </div>
-  )
-}
-export default App
