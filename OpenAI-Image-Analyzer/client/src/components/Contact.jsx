@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 const ContactForm = () => {
+
+  const [status, setStatus] = useState("");
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    username: "",
     message: "",
   });
-  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,22 +29,29 @@ const ContactForm = () => {
 
       if (response.ok) {
         setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" }); // Reset the form
+        setFormData({ name: "", username: "", message: "" }); // Reset the form
       } else {
         setStatus("Failed to send message.");
       }
     } catch (error) {
-      setStatus("An error occurred. Please try again.");
+      console.log(error)
+      setStatus(`${error}: An error occurred. Please try again.`);
     }
   };
 
   return (
+    <div id="contact" className="flex flex-col md:flex-row justify-around items-center p-8 bg-gray-900">
+      <div>
+        <img src="/images/contact-img.svg" alt="contact_svg" />
+      </div>
     <form
       onSubmit={handleSubmit}
-      className="max-w-lg mx-auto p-4 bg-gray-900 shadow-md rounded"
+      className="max-w- mx-auto p-4 bg-gray-900 shadow-md rounded"
     >
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
       {status && <p className="text-sm text-green-600">{status}</p>}
+
+      {/* name */}
       <div className="mb-4">
         <label htmlFor="name" className="block text-sm font-medium">
           Name
@@ -58,20 +66,24 @@ const ContactForm = () => {
           required
         />
       </div>
+
+      {/* username */}
       <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium">
-          Email
+        <label htmlFor="username" className="block text-sm font-medium">
+          Email or Telegram/Twitter(X) Username
         </label>
         <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
+          type="name"
+          id="username"
+          name="username"
+          value={formData.username}
           onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded"
           required
         />
       </div>
+
+      {/* message */}
       <div className="mb-4">
         <label htmlFor="message" className="block text-sm font-medium">
           Message
@@ -86,6 +98,8 @@ const ContactForm = () => {
           required
         />
       </div>
+
+      {/* submit */}
       <button
         type="submit"
         className="bg-blue-500 text-gray-900 py-2 px-4 rounded"
@@ -93,6 +107,7 @@ const ContactForm = () => {
         Send
       </button>
     </form>
+    </div>
   );
 };
 
