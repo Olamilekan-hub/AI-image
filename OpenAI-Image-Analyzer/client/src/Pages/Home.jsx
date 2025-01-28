@@ -2,8 +2,8 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import LoadingPage from "./LoadingPage";
 import About from "../components/About";
-import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import ContactForm from "../components/Contact";
 
 const Home = () => {
   return (
@@ -23,10 +23,11 @@ const Home = () => {
         </div>
       </div> */}
       {/* )} */}
+      
       <Header />
       <Hero/>
       <About/>
-      {/* <Contact/> */}
+      <ContactForm/>
       <hr className="border-1 border-gray-500" />
       <Footer/>
     </div>

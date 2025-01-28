@@ -1,82 +1,96 @@
-const Contact = () => {
+import { useState } from "react";
+
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("https://your-backend-url.com/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" }); // Reset the form
+      } else {
+        setStatus("Failed to send message.");
+      }
+    } catch (error) {
+      setStatus("An error occurred. Please try again.");
+    }
+  };
+
   return (
-    <div>
-      <footer className="w-full h-screen bg-[#4728E7] text-gray-100 pb-16 pt-8 px-6">
-        <div className="w-full">
-          <div className="flex flex-col lg:flex-row justify-between gap-12 mb-12">
-            <form className="w-full flex-1  space-y-6">
-              <h6 className="text-lg font-medium mb-6">Contact us</h6>
-              <div className="space-y-4">
-                <label className="block">
-                  {/* < className="block text-sm opacity-70 mb-2">Twitter Handle and/or Telegram Username</> */}
-                  <input
-                    type="text"
-                    className="w-full p-3 bg-black/5 border border-gray-700/10 rounded focus:outline-none focus:border-gray-500 transition-colors"
-                    placeholder=""
-                  />
-                </label>
-                <label className="block">
-                  <span className="block text-sm opacity-70 mb-2">Message</span>
-                  <textarea
-                    className="w-full p-3 bg-black/5 border border-gray-700/10 rounded focus:outline-none focus:border-gray-500 transition-colors min-h-[120px] text[#fff]"
-                    placeholder="Hello!"
-                  ></textarea>
-                </label>
-                <button
-                  type="submit"
-                  className="px-10 py-3 bg-gray-100 text-gray-900 rounded hover:bg-gray-200 transition-colors font-medium"
-                >
-                  Submit
-                </button>
-                <div className="flex-1 gap-4 text-sm">
-                  <span className="font-medium pr-2">21:31</span>
-                  <span className="font-medium opacity-70">01/27/2025</span>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="text-center">
-            <h1 className="text-[30px] lg:text-[280px] font-[500]">
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                N
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                e
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                u
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                r
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                o
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                S
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                t
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                a
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                c
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                k
-              </span>
-              <span className="inline-block transition-all duration-300 ease-in-out hover:font-[900]">
-                ®
-              </span>
-            </h1>
-          </div>
-          {/* </form>
-          </div> */}
-        </div>
-      </footer>
-    </div>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-lg mx-auto p-4 bg-gray-900 shadow-md rounded"
+    >
+      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+      {status && <p className="text-sm text-green-600">{status}</p>}
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-sm font-medium">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-2 rounded"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-2 rounded"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="message" className="block text-sm font-medium">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-2 rounded"
+          rows="5"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        className="bg-blue-500 text-gray-900 py-2 px-4 rounded"
+      >
+        Send
+      </button>
+    </form>
   );
 };
-export default Contact;
+
+export default ContactForm;
