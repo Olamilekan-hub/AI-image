@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const About = () => {
   return (
     <div className="font-bold bg-gray-200 py-8 px-14 text-gray-900">
-      <div className="bg-gray-900 text-gray-100 p-10 rounded-3xl mt-12">
+      <div className="bg-gray-900 text-gray-100 p-10 rounded-3xl mt-8">
         <h1 className="text-5xl text-center cf">
           SpectraAI Simplifies Image Analysis
         </h1>

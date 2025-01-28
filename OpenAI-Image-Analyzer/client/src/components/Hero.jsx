@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <>
       <div className="hero-container">
-        <video className="hero-video" autoPlay loop muted>
+        <video className="hero-video" autoPlay loop muted playsInline>
           <source
             src="/videos/technology-digital-or-information-data-concept-free-video-vmake.mp4"
             type="video/mp4"
@@ -13,7 +13,7 @@ const Hero = () => {
         </video>
 
         <div className="flex flex-col items-center justify-center h-full text-gray-200 text-center gap-3 md:gap-5 lg:gap-7 px-5 z-20 hero-conten">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold cursor-text cf">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold cursor-text cf">
             {Array.from("Smarter Insights, Clear Vision").map((char, index) => (
               <span
                 key={index}
@@ -52,7 +52,8 @@ const Hero = () => {
               }}
             >
               Try $SAI<span className="r text-sm align-top">&reg;</span> CA:
-              CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED
+              CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED CA_NEEDED
+              CA_NEEDED CA_NEEDED CA_NEEDED
             </p>
           </div>
 

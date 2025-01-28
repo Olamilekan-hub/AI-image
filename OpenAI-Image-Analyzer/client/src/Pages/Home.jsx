@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import LoadingPage from "./LoadingPage";
 import About from "../components/About";
 import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -26,6 +27,7 @@ const Home = () => {
       <Hero/>
       <About/>
       <Contact/>
+      <Footer/>
     </div>
   );
 };
