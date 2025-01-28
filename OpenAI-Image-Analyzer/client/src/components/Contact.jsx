@@ -45,23 +45,23 @@ const ContactForm = () => {
       <h2 className="text-7xl font-bold mb-2 text-gray-200 text-center">       
         Contact Us
       </h2> 
-      <hr className="border-1 border-gray-600 mb-6" />
+      <hr className="border-1 border-gray-700 mb-6" />
 
       <div className="flex flex-col lg:flex-row justify-between items-center px-8">
-        {/* Contact Image */}
-        <div className="order-2 lg:order-0 w-[95%] lg:w-[45%] lg:ml-8">
-          <img src="/images/contact-img.svg" alt="contact_svg" />
-        </div>
+       {/* Contact Image */}
+          <div className="order-2 lg:order-0 w-[95%] lg:w-[45%] lg:ml-8 flex justify-center items-center">
+            <img src="/images/contact-img.svg" className="w-[98%] hover:w-full transition duration-700 ease-out-out" alt="contact_svg" />
+          </div>
 
-        {/* Contact Form */}
+          {/* Contact Form */}
         <form
           onSubmit={handleSubmit}
-          className="w-[40%] mx-auto p-6 bg-gray-100 shadow-sm shadow-gray-200 rounded-2xl"
+          className="w-[40%] mx-auto p-6 bg-gray-100 shadow-md shadow-gray-400 rounded-2xl"
         >
           {status && <p className="text-sm text-green-600">{status}</p>}
 
           {/* name */}
-          <div className="mb-4">
+          <div className="mb-5">
             <label htmlFor="name" className="block text-2xl font-medium text-gray-900 mb-2 ">
               Name
             </label>
@@ -72,14 +72,14 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name..."
-              className="text-gray-900 w-full border border-gray-700 p-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 drop-shadow-lg shadow-gray-500 "
+              className="text-gray-900 w-full border border-gray-700 p-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 shadow-sm shadow-gray-500 "
               required
             />
           </div>
 
           {/* username */}
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-sm font-medium">
+          <div className="mb-5">
+            <label htmlFor="username" className="block text-xl font-medium text-gray-900 mb-2 ">
               Email or Telegram/Twitter(X) Username
             </label>
             <input
@@ -88,14 +88,15 @@ const ContactForm = () => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
+              placeholder="Enter your username (eg. @username) or email..."
+              className="text-gray-900 w-full border border-gray-700 p-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 shadow-sm shadow-gray-500 "
               required
             />
           </div>
 
           {/* message */}
           <div className="mb-4">
-            <label htmlFor="message" className="block text-sm font-medium">
+            <label htmlFor="message" className="block text-2xl font-medium text-gray-900 mb-2 ">
               Message
             </label>
             <textarea
@@ -103,7 +104,8 @@ const ContactForm = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full border border-gray-300 p-2 rounded"
+              placeholder="Enter your message..."
+              className="text-gray-900 w-full border border-gray-700 p-2 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 shadow-sm shadow-gray-500 "
               rows="5"
               required
             />
@@ -112,7 +114,7 @@ const ContactForm = () => {
           {/* submit */}
           <button
             type="submit"
-            className="bg-blue-500 text-gray-900 py-2 px-4 rounded"
+            className="bg-blue-500 text-gray-900 py-2 px-4 rounded-full transition duration-700 ease-in-out"
           >
             Send
           </button>

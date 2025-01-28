@@ -1,5 +1,5 @@
 // import { Link } from 'react-router-dom';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,7 +28,9 @@ const Footer = () => {
 
       <div className="flex justify-between items-center px-24">
         <h1 className="text-lg md:text-2xl font-semibold hover:bg-white hover:text-gray-900 py-1 px-2 md:px-3 rounded-l-full border-1 md:border-2 border-white text-white rounded-br-full bg-gray-900 transition duration-300 cursor-pointer">
-          SpectraAI<span className="r text-sm align-top">&reg;</span>
+          <a href="#home">
+            SpectraAI<span className="r text-sm align-top">&reg;</span>
+          </a>
         </h1>
 
         <h1 className="text-lg md:text-2xl font-semibold hover:bg-white hover:text-gray-900 py-1 px-2 md:px-3 rounded-bl-full border-1 md:border-2 border-white text-white rounded-r-full bg-gray-900 transition duration-300 cursor-pointer">
@@ -42,7 +44,6 @@ const Footer = () => {
       height: '1px', 
       background: 'linear-gradient(to right, rgba(51, 51, 51, 0) 0%, #333 10%, rgba(51, 51, 51, 0) 100%)'
     }}  /> */}
-
 
       <div>
         <p className="text-center text-gray-500 mt-5 pb-10">
