@@ -26,7 +26,7 @@ const Home = () => {
       <Header />
       <Hero/>
       <About/>
-      <Contact/>
+      {/* <Contact/> */}
       <hr className="border-1 border-gray-500" />
       <Footer/>
     </div>
