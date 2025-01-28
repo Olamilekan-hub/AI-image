@@ -119,7 +119,7 @@ app.post("/send-email", async (req, res) => {
     service: "Gmail", // or your email service
     auth: {
       user: "spectraai57@gmail.com",
-      pass: "mackbooksaidopi",
+      pass: "macbooksaidopi",
     },
   });
 
