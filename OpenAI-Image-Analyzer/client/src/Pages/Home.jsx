@@ -6,7 +6,7 @@ import Contact from "../components/Contact";
 
 const Home = () => {
   return (
-    <div className="bg-gray-200 text-white h-screen">
+    <div className="text-white h-screen">
       <LoadingPage />
 
       {/* Main Content */}
