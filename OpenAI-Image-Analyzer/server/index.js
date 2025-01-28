@@ -4,9 +4,13 @@ import { configDotenv } from "dotenv";
 import fs from "fs";
 import multer from "multer";
 import OpenAI from "openai";
+import bodyParser from "body-parser";
+import nodemailer from "nodemailer";
 
 const app = express();
 configDotenv();
+
+app.use(bodyParser.json());
 
 app.use(
   cors({
@@ -104,6 +108,34 @@ app.post("/openai", async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
+  }
+});
+
+app.post("/send-email", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  // Set up Nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: "Gmail", // or your email service
+    auth: {
+      user: "spectraai57@gmail.com",
+      pass: "mackbooksaidopi",
+    },
+  });
+
+  const mailOptions = {
+    from: email,
+    to: "spectraai57@gmail.com", // Your email
+    subject: `Message from ${name}`,
+    text: message,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Email sent successfully!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to send email." });
   }
 });
 
