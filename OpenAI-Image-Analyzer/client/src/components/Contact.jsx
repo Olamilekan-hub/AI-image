@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const ContactForm = () => {
-
   const [status, setStatus] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -9,11 +8,13 @@ const ContactForm = () => {
     message: "",
   });
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,79 +35,89 @@ const ContactForm = () => {
         setStatus("Failed to send message.");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setStatus(`${error}: An error occurred. Please try again.`);
     }
   };
 
   return (
-    <div id="contact" className="flex flex-col md:flex-row justify-around items-center p-8 bg-gray-900">
-      <div>
-        <img src="/images/contact-img.svg" alt="contact_svg" />
-      </div>
-    <form
-      onSubmit={handleSubmit}
-      className="max-w- mx-auto p-4 bg-gray-900 shadow-md rounded"
-    >
-      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-      {status && <p className="text-sm text-green-600">{status}</p>}
+    <div id="contact" className="py-12 bg-gray-900 items-center">
+      <h2 className="text-7xl font-bold mb-2 text-gray-200 text-center">       
+        Contact Us
+      </h2> 
+      <hr className="border-1 border-gray-600 mb-6" />
 
-      {/* name */}
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full border border-gray-300 p-2 rounded"
-          required
-        />
-      </div>
+      <div className="flex flex-col lg:flex-row justify-between items-center px-8">
+        {/* Contact Image */}
+        <div className="order-2 lg:order-0 w-[95%] lg:w-[45%] lg:ml-8">
+          <img src="/images/contact-img.svg" alt="contact_svg" />
+        </div>
 
-      {/* username */}
-      <div className="mb-4">
-        <label htmlFor="username" className="block text-sm font-medium">
-          Email or Telegram/Twitter(X) Username
-        </label>
-        <input
-          type="name"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          className="w-full border border-gray-300 p-2 rounded"
-          required
-        />
-      </div>
+        {/* Contact Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="w-[40%] mx-auto p-6 bg-gray-100 shadow-sm shadow-gray-200 rounded-2xl"
+        >
+          {status && <p className="text-sm text-green-600">{status}</p>}
 
-      {/* message */}
-      <div className="mb-4">
-        <label htmlFor="message" className="block text-sm font-medium">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full border border-gray-300 p-2 rounded"
-          rows="5"
-          required
-        />
-      </div>
+          {/* name */}
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-2xl font-medium text-gray-900 mb-2 ">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name..."
+              className="text-gray-900 w-full border border-gray-700 p-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 drop-shadow-lg shadow-gray-500 "
+              required
+            />
+          </div>
 
-      {/* submit */}
-      <button
-        type="submit"
-        className="bg-blue-500 text-gray-900 py-2 px-4 rounded"
-      >
-        Send
-      </button>
-    </form>
+          {/* username */}
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-sm font-medium">
+              Email or Telegram/Twitter(X) Username
+            </label>
+            <input
+              type="name"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-2 rounded"
+              required
+            />
+          </div>
+
+          {/* message */}
+          <div className="mb-4">
+            <label htmlFor="message" className="block text-sm font-medium">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-2 rounded"
+              rows="5"
+              required
+            />
+          </div>
+
+          {/* submit */}
+          <button
+            type="submit"
+            className="bg-blue-500 text-gray-900 py-2 px-4 rounded"
+          >
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

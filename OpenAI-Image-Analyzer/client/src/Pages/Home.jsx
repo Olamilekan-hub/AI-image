@@ -23,10 +23,11 @@ const Home = () => {
         </div>
       </div> */}
       {/* )} */}
-      
+
       <Header />
       <Hero/>
       <About/>
+      <hr className="border-1 border-gray-500" />
       <ContactForm/>
       <hr className="border-1 border-gray-500" />
       <Footer/>
