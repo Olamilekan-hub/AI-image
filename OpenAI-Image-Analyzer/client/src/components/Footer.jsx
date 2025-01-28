@@ -37,7 +37,7 @@ const Footer = () => {
       </div>
 
       <hr className="w-full lg:w-4/5 mx-auto border-1 border-gray-700 mt-5" />
-      <hr className="w-full lg:w-4/5 mx-auto mt-5" style={{
+      <hr className="w-full lg:w-2/5 mx-auto mt-5" style={{
       border: 'none', 
       height: '1px', 
       background: 'linear-gradient(to right, rgba(51, 51, 51, 0) 0%, #333 50%, rgba(51, 51, 51, 0) 100%)'
