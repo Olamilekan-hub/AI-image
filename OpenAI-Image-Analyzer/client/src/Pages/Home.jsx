@@ -27,6 +27,7 @@ const Home = () => {
       <Hero/>
       <About/>
       <Contact/>
+      <hr className="border-1 border-gray-500" />
       <Footer/>
     </div>
   );

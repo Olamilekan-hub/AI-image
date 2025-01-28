@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <>
-      <div className="hero-container">
+      <div id="home" className="hero-container">
         <video className="hero-video" autoPlay loop muted playsInline>
           <source
             src="/videos/technology-digital-or-information-data-concept-free-video-vmake.mp4"
