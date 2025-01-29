@@ -2,7 +2,7 @@ const ImageUpload = ({ image, uploadImage }) => {
   return (
     <div
       id="image-container"
-      className="w-[75%] md:w-[50%] h-[25rem] bg-gray-200 border-2 border-dashed border-gray-500 flex items-center justify-center rounded-xl overflow-hidden ml-[25%] md:ml-[50%] mt-10"
+      className="w-[75%] md:w-[65%] xl:w-[60%] h-[15rem] md:[20rem] xl:h-[25rem] bg-gray-200 border-2 border-dashed border-gray-500 flex items-center justify-center rounded-xl overflow-hidden ml-[25%] md:ml-[35%] xl:ml-[40%] mt-10"
     >
       {image ? (
         <img
