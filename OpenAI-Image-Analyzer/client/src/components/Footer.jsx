@@ -10,16 +10,16 @@ const Footer = () => {
         id="links"
         className="border-b-[0.5px] md:border-b-1 mb-5 py-2 px-2 md:px-7 rounded-full shadow-xs shadow-gray-200 space-x-4 md:space-x-9 flex justify-center items-center w-2/3 lg:w-3/5 xl:w-2/5 mx-auto"
       >
-        <li className="border-r-1 text-md md:text-lg pr-4 md:pr-9 border-white">
+        <li className="border-r-1 text-md md:text-lg pr-4 md:pr-9 border-white text-200">
           <a href="#about">Docs</a>
         </li>
-        <li className="border-r-1 text-md md:text-lg pr-4 md:pr-9 border-white">
+        <li className="border-r-1 text-md md:text-lg pr-4 md:pr-9 border-white text-200">
           <a href="#about">Github</a>
         </li>
-        <li className="border-r-1 text-md md:text-lg pr-4 md:pr-9 border-white">
+        <li className="border-r-1 text-md md:text-lg pr-4 md:pr-9 border-white text-200">
           <a href="#contact">Contact Us</a>
         </li>
-        <li className="text-md md:text-lg">
+        <li className="text-md md:text-lg text-200">
           <a href="https://x.com/">
             <FaXTwitter />
           </a>

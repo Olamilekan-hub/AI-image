@@ -3,7 +3,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[60%] bg-gray-900 text-white p-1 shadow-sm z-47 rounded-full mt-4 md:mt-7 font-poppins shadow-gray-200">
+    <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[60%] bg-gray-900 text-white p-1 shadow-sm z-45 rounded-full mt-4 md:mt-7 font-poppins shadow-gray-200">
       <div className="flex justify-between items-center">
         <h1 className="text-lg md:text-2xl font-semibold hover:bg-white hover:text-gray-900 py-1 px-2 md:px-3 rounded-l-full border-1 md:border-2 border-white text-white rounded-br-full bg-gray-900 transition duration-300 cursor-pointer">
           <a href="#home">

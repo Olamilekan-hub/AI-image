@@ -90,18 +90,18 @@ const ContactForm = () => {
 
       <div className="flex flex-col lg:flex-row justify-between items-center px-8 gap-10 lg:gap-0">
         {/* Contact Image */}
-        <div className="order-2 lg:order-0 w-[95%] lg:w-[45%] lg:ml-8 flex justify-center items-center">
+        {/* <div className="order-2 lg:order-0 w-[95%] lg:w-[45%] lg:ml-8 flex justify-center items-center">
           <img
             src="/images/contact-img.svg"
             className="w-[98%] hover:w-full transition duration-700 ease-out-out"
             alt="contact_svg"
           />
-        </div>
+        </div> */}
 
         {/* Contact Form */}
         <form
           onSubmit={handleSubmit}
-          className="lg:w-[40%] w-full lg:mx-auto p-6 bg-gray-100 shadow-md shadow-gray-400 rounded-2xl"
+          className="lg:w-[50%] w-full lg:mx-auto p-6 bg-gray-100 shadow-md shadow-gray-400 rounded-2xl"
         >
           {status && <p className="text-md text-green-600">{status}</p>}
 
