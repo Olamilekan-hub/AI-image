@@ -84,7 +84,7 @@ const ImageAnalyzer = () => {
       >
         <section
           id="search-section"
-          className="w-full md:w-[70%] fixed top-30 h-full mb-10 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-auto"
+          className="w-full md:w-[70%] fixed top-30 h-[85%] mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-y-auto"
         >
           <ImageUpload className="flex justify-end item-right" image={image} uploadImage={uploadImage} />
 
