@@ -8,11 +8,10 @@ const About = () => {
           SpectraAI Simplifies Image Analysis
         </h1>
         <p className="text-md md:text-lg lg:text-xl text-center cf my-2 md:my-5 bg-gray-100 text-gray-900 md:rounded-xl p-1 w-auto">
-          Tool Development • AI Workflows • API Integrations
-          <button className="ml-[3rem] md:text-sm py-1 md:py-2 px-1.5 md:px-3 rounded-full shadow-sm shadow-gray-900 font-semibold  border-gray-900 border-1 md:border-2 bg-gray-100 text-gray-900 transition duration-300">
+          Tool Development • AI Workflows • <br className="sm:hidden" /> API Integrations
+          <button className="ml-[3rem] md:text-sm py-0 md:py-2 px-1.5 md:px-3 rounded-4xl shadow-sm shadow-gray-900 font-semibold  border-gray-900 border-1 md:border-2 bg-gray-100 text-gray-900 transition duration-300">
             <Link to="">
               Docs
-              <span className="r text-[12px] md:text-xs align-top">&reg;</span>
             </Link>
           </button>
         </p>

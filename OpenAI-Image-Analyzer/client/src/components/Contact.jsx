@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaPaperPlane, FaSpinner, FaCheck } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import useCurrentDateTime from "../utils/useDateTimeDisplay";
 
 const ContactForm = () => {
   const [status, setStatus] = useState("");
@@ -10,6 +11,8 @@ const ContactForm = () => {
     message: "",
   });
   const [buttonState, setButtonState] = useState("initial");
+
+  const currentDateTime = useCurrentDateTime();
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -162,13 +165,16 @@ const ContactForm = () => {
             />
           </div>
 
-          {/* submit */}
-          <button
-            type="submit"
-            className="bg-gray-500 font-semibold text-gray-900 py-1 px-6 rounded-2xl transition duration-700 ease-in-out hover:bg-gray-700 hover:text-gray-100 text-lg hover:text-xl flex items-center justify-center gap-2 hover:py-2 mb-4 mt-2"
-          >
-            {renderButtonContent()}
-          </button>
+          <div className="flex justify-between items-center flex-col sm:flex-row">
+            {/* submit */}
+            <button
+              type="submit"
+              className="bg-gray-500 font-semibold text-gray-900 py-1 px-6 rounded-2xl transition duration-700 ease-in-out hover:bg-gray-700 hover:text-gray-100 text-lg hover:text-xl flex items-center justify-center gap-2 hover:py-2 mb-4 mt-2"
+            >
+              {renderButtonContent()}
+            </button>
+            <p className="text-gray-900">{currentDateTime}</p>
+          </div>
         </form>
       </div>
     </div>
