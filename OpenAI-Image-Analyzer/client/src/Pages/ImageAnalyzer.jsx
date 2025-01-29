@@ -7,7 +7,7 @@ import ImageResponse from "../components/ImageResponse";
 import ExtraInfo from "../components/ExtraInfo";
 import QuestionPrompt from "../components/QuestionPrompt";
 // import Header from "../components/Header";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 const ImageAnalyzer = () => {
   const [image, setImage] = useState(null);
@@ -65,7 +65,6 @@ const ImageAnalyzer = () => {
 
   return (
     <div className="h-screen overflow-auto">
-
       {/* <Header /> */}
 
       <video id="Video" className="hero-video" autoPlay loop muted playsInline>
@@ -76,19 +75,28 @@ const ImageAnalyzer = () => {
         Your browser does not support the video tag.
       </video>
 
-      <h1 className="text-3xl md:4xl lg:text-6xl p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center z-20">SpectraAI $SAI</h1>
+      <h1 className="text-3xl md:4xl lg:text-6xl p-1 md:p-2 lg:p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center z-20">
+        SpectraAI $SAI
+      </h1>
 
       <div
         id="Analyze"
-        className="min-h-screen w-full bg-gray-900/45 p-4 flex justify-center items-center overflow-auto mt-20"
+        className="w-full bg-gray-900/45 p-4 flex justify-center items-center overflow-y-auto mt-10 md:mt-15 lg:mt-20"
       >
         <section
           id="search-section"
-          className="w-full md:w-[70%] fixed top-30 h-[85%] mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-y-auto"
+          className="w-full md:w-[70%]  mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-y-auto"
         >
-          <ImageUpload className="flex justify-end item-right" image={image} uploadImage={uploadImage} />
+          <ImageUpload
+            className="flex justify-end item-right"
+            image={image}
+            uploadImage={uploadImage}
+          />
 
           <ExtraInfo />
+
+          <ImageResponse response={response} error={error} loading={loading} />
+          
           <QuestionPrompt
             surprise={surprise}
             response={response}
@@ -102,7 +110,6 @@ const ImageAnalyzer = () => {
             error={error}
             clear={clear}
           />
-          <ImageResponse response={response} error={error} loading={loading} />
         </section>
       </div>
       {/* <Footer /> */}

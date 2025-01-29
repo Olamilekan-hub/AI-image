@@ -2,7 +2,7 @@ const ImageUpload = ({ image, uploadImage }) => {
   return (
     <div
       id="image-container"
-      className="w-[75%] md:w-[50%] h-[25rem] bg-gray-50 border-2 border-dashed border-gray-300 flex items-center justify-center rounded-lg overflow-hidden ml-[25%] md:ml-[50%] mt-10"
+      className="w-[75%] md:w-[50%] h-[25rem] bg-gray-200 border-2 border-dashed border-gray-500 flex items-center justify-center rounded-xl overflow-hidden ml-[25%] md:ml-[50%] mt-10"
     >
       {image ? (
         <img
@@ -13,7 +13,7 @@ const ImageUpload = ({ image, uploadImage }) => {
       ) : (
         <label
           htmlFor="files"
-          className="bg-gray-500 py-3 px-4 rounded-full text-white font-bold text-xl hover:bg-gray-800 hover:text-gray-200"
+          className="bg-gray-600 py-3 px-4 rounded-full text-gray-200 font-bold text-xl hover:bg-gray-800 hover:text-gray-200"
         >
           Upload an Image
         </label>
