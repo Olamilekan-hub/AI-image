@@ -5,7 +5,7 @@ const ImageResponse = ({ response, error, loading }) => {
       {loading && (
         <p
           id="loading"
-          className="text-center w-full text-xl font-semibold bg-gray-100 mb-8 text-black p-5 rounded-lg shadow-lg w-[68%]"
+          className="text-center w-full text-xl font-semibold bg-gray-100 mb-8 text-black p-5 rounded-lg shadow-lg"
         >
           Generating Analysis...
         </p>
