@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaPaperPlane, FaSpinner, FaCheck } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const ContactForm = () => {
   const [status, setStatus] = useState("");
@@ -125,9 +126,9 @@ const ContactForm = () => {
           <div className="mb-5">
             <label
               htmlFor="username"
-              className="block text-xl font-medium text-gray-900 mb-2 "
+              className="flex text-xl font-medium text-gray-900 mb-2 items-center"
             >
-              Email or Telegram/Twitter(X) Username
+              Email or Telegram/Twitter({<FaXTwitter />}) Username
             </label>
             <input
               type="name"

@@ -39,12 +39,6 @@ const Footer = () => {
       </div>
 
       <hr className="w-full  mx-auto border-1 border-gray-700 mt-5" />
-      {/* <hr className="w-full lg:w-2/5 mx-auto mt-5" style={{
-      border: 'none', 
-      height: '1px', 
-      background: 'linear-gradient(to right, rgba(51, 51, 51, 0) 0%, #333 10%, rgba(51, 51, 51, 0) 100%)'
-    }}  /> */}
-
       <div>
         <p className="text-center text-gray-500 mt-5 pb-10">
           <span className="text-blue-900">&copy;</span> {currentYear} SpectraAI.
