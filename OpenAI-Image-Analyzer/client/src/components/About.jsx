@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <div className="font-bold bg-gray-200 py-8 px-14 text-gray-900">
-      <div className="bg-gray-900 text-gray-100 p-10 rounded-3xl mt-8">
-        <h1 className="text-5xl text-center cf">
+    <div className="font-bold bg-gray-200 py-2 md:py-8 px-3 md:px-14 text-gray-900">
+      <div className="bg-gray-900 text-gray-100 py-5 md:p-10 rounded-3xl mt-8">
+        <h1 className=" text-center cf px-5 text-2xl md:text-4xl lg:text-5xl">
           SpectraAI Simplifies Image Analysis
         </h1>
-        <p className="text-xl text-center cf my-5 bg-gray-100 text-gray-900 rounded-xl p-1 w-auto">
+        <p className="text-md md:text-lg lg:text-xl text-center cf my-2 md:my-5 bg-gray-100 text-gray-900 md:rounded-xl p-1 w-auto">
           Tool Development • AI Workflows • API Integrations
           <button className="ml-[3rem] md:text-sm py-1 md:py-2 px-1.5 md:px-3 rounded-full shadow-sm shadow-gray-900 font-semibold  border-gray-900 border-1 md:border-2 bg-gray-100 text-gray-900 transition duration-300">
-            <Link to="/Analyze">
-              Try $SAI
+            <Link to="">
+              Docs
               <span className="r text-[12px] md:text-xs align-top">&reg;</span>
             </Link>
           </button>

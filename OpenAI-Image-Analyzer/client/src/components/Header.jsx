@@ -31,10 +31,10 @@ const Header = () => {
           </li>
         </ul>
 
-        <button className="hover:bg-white md:text-sm py-1 md:py-2 px-1.5 md:px-3 rounded-full shadow-md hover:text-gray-900 font-semibold  border-white border-1 md:border-2 bg-gray-900 text-white transition duration-300">
+        <button className="hover:bg-white md:text-md py-1 md:py-2 px-1.5 md:px-3 rounded-full shadow-md hover:text-gray-900 font-semibold  border-white border-1 md:border-2 bg-gray-900 text-white transition duration-300">
           <Link to="/Analyze">
             Try $SAI
-            <span className="r text-[12px] md:text-sm align-top">&reg;</span>
+            {/* <span className="r text-[12px] md:text-sm align-top">&reg;</span> */}
           </Link>
         </button>
       </div>
