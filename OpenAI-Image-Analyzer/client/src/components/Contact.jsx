@@ -128,7 +128,7 @@ const ContactForm = () => {
               htmlFor="username"
               className="flex text-xl font-medium text-gray-900 mb-2 items-center"
             >
-              Email or Telegram/Twitter({<FaXTwitter />}) Username
+              Email or Telegram/Twitter({<FaXTwitter className="w-4" />}) Username
             </label>
             <input
               type="name"
