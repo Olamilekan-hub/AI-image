@@ -64,7 +64,7 @@ const ImageAnalyzer = () => {
   };
 
   return (
-    <div className="h-screen overflow-auto">
+    <div className="overflow-auto h-screen">
       {/* <Header /> */}
 
       <video id="Video" className="hero-video" autoPlay loop muted playsInline>
@@ -81,11 +81,11 @@ const ImageAnalyzer = () => {
 
       <div
         id="Analyze"
-        className="w-full bg-gray-900/45 p-4 flex justify-center items-center overflow-y-auto mt-10 md:mt-15 lg:mt-20"
+        className="w-full h-screen overflow-y-auto bg-gray-900/45 p-4 flex justify-center items-center  mt-10 md:mt-15 lg:mt-20"
       >
         <section
           id="search-section"
-          className="w-full md:w-[85%] lg:w-[70%]  mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-y-auto"
+          className="w-full md:w-[85%] lg:w-[70%] mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col"
         >
           <ImageUpload
             className="flex justify-end item-right"
@@ -96,7 +96,7 @@ const ImageAnalyzer = () => {
           <ExtraInfo />
 
           <ImageResponse response={response} error={error} loading={loading} />
-          
+
           <QuestionPrompt
             surprise={surprise}
             response={response}

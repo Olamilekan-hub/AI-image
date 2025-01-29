@@ -1,3 +1,4 @@
+import { FaSpinner } from "react-icons/fa6";
 
 const ImageResponse = ({ response, error, loading }) => {
   return (
@@ -5,9 +6,10 @@ const ImageResponse = ({ response, error, loading }) => {
       {loading && (
         <p
           id="loading"
-          className="text-center w-full text-xl font-semibold bg-gray-100 mb-8 text-black p-5 rounded-lg shadow-lg"
+          className="text-center w-full text-md md:text-xl font-semibold bg-gray-100 mb-8 text-black p-5 rounded-lg shadow-lg"
         >
           Generating Analysis...
+          <FaSpinner className="animate-spin mr-2" />
         </p>
       )}
       {error && (
