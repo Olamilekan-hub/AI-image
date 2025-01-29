@@ -76,7 +76,7 @@ const ImageAnalyzer = () => {
         Your browser does not support the video tag.
       </video>
 
-      <h1 className="text-6xl p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center">SpectraAI $SAI</h1>
+      <h1 className="text-6xl p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center z-20">SpectraAI $SAI</h1>
 
       <div
         id="Analyze"
@@ -84,7 +84,7 @@ const ImageAnalyzer = () => {
       >
         <section
           id="search-section"
-          className="w-full md:w-[70%] h-screen shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-auto"
+          className="w-full md:w-[70%] fixed top-30 h-full mb-10 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col overflow-auto"
         >
           <ImageUpload className="flex justify-end item-right" image={image} uploadImage={uploadImage} />
 
