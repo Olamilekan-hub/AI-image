@@ -21,7 +21,7 @@ const ImageResponse = ({ response, error, loading }) => {
       {response && (
         <p
           id="response"
-          className="bg-gray-100 text-black mt-2 mb-8 rounded-lg p-5 shadow-lg w-[68%]"
+          className="bg-gray-100 text-black mt-2 mb-8 rounded-lg p-5 shadow-lg w-[78%] md:w-[68%]"
         >
           {response}
         </p>

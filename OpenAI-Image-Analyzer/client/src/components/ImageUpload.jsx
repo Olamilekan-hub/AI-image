@@ -13,7 +13,7 @@ const ImageUpload = ({ image, uploadImage }) => {
       ) : (
         <label
           htmlFor="files"
-          className="bg-gray-600 py-3 px-4 rounded-full text-gray-200 font-bold text-xl hover:bg-gray-800 hover:text-gray-200"
+          className="bg-gray-600 py-1 md:py-3 px-2 md:px-4 rounded-full text-gray-200 font-bold text-md md:text-xl hover:bg-gray-800 hover:text-gray-200"
         >
           Upload an Image
         </label>
