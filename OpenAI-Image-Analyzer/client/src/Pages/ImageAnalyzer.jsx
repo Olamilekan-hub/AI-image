@@ -76,7 +76,7 @@ const ImageAnalyzer = () => {
         Your browser does not support the video tag.
       </video>
 
-      <h1 className="text-6xl p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center z-20">SpectraAI $SAI</h1>
+      <h1 className="text-3xl md:4xl lg:text-6xl p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center z-20">SpectraAI $SAI</h1>
 
       <div
         id="Analyze"
