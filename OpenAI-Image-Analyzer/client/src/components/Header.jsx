@@ -3,25 +3,28 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[60%] bg-gray-900 text-white p-1 shadow-sm z-45 rounded-full mt-4 md:mt-7 font-poppins shadow-gray-200">
+    <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[40%] bg-black text-white p-2 z-100 rounded-xl mt-4 md:mt-7 font-poppins border border-dotted border-white">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg md:text-2xl font-semibold hover:bg-white hover:text-gray-900 py-1 px-2 md:px-3 rounded-l-full border-1 md:border-2 border-white text-white rounded-br-full bg-gray-900 transition duration-300 cursor-pointer">
-          <a href="#home">
-            SpectraAI<span className="r text-sm align-top">&reg;</span>
-          </a>
-        </h1>
+        <div className="flex items-center space-x-1 md:space-x-2">
+          <img src="/images/Variant 1.png" alt="logo" className="w-[50%] lg:w-[70%] xl:w-auto" />
+          <h1 className="text-lg md:text-xl font-semibold text-white gradient-text transition duration-300 cursor-pointer">
+            <a href="#home">
+              SpectraAI<span className="r text-sm align-top">&reg;</span>
+            </a>
+          </h1>
+        </div>
 
         <ul
           id="links"
-          className="border-b-[0.5px] md:border-b-1 py-2 px-2 md:px-7 rounded-full shadow-xs shadow-gray-200 space-x-2 md:space-x-7 lg:flex justify-center items-center hidden"
+          className="space-x-2 md:space-x-5 lg:flex justify-center items-center hidden text-gray-200"
         >
-          <li className="border-r-1 text-sm md:text-md pr-2 md:pr-7 border-white">
+          <li className="text-sm md:text-md">
             <a href="#about">Docs</a>
           </li>
-          <li className="border-r-1 text-sm md:text-md pr-2 md:pr-7 border-white">
+          <li className="text-sm md:text-md">
             <a href="#about">Github</a>
           </li>
-          <li className="border-r-1 text-sm md:text-md pr-2 md:pr-7 border-white">
+          <li className="text-sm md:text-md">
             <a href="#contact">Contact Us</a>
           </li>
           <li className="">
@@ -31,7 +34,7 @@ const Header = () => {
           </li>
         </ul>
 
-        <button className="hover:bg-white md:text-md py-1 md:py-2 px-1.5 md:px-3 rounded-full shadow-md hover:text-gray-900 font-semibold  border-white border-1 md:border-2 bg-gray-900 text-white transition duration-300">
+        <button className="hover:bg-[#9856FF] md:text-md py-1 md:py-2 px-1.5 md:px-3 rounded-xl hover:text-[gray-200] font-semibold  border-white border-dotted  bg-[#6c009a] inset-shadow-sm inset-shadow-white text-white transition duration-300">
           <Link to="/Analyze">
             Try $SAI
             {/* <span className="r text-[12px] md:text-sm align-top">&reg;</span> */}
