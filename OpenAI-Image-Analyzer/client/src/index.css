@@ -52,3 +52,85 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Default container styles */
+.container {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Small screens (≥375px) */
+@media (min-width: 375px) {
+  .container {
+    max-width: 375px;
+  }
+}
+
+/* Medium screens (≥768px) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+/* Large screens (≥1200px) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+body {
+  color: white;
+  background-color: black;
+}
+
+.bggr {
+  background: radial-gradient(
+    circle at top left,
+    white,
+    rgba(74, 32, 138, 0.5)
+  );
+  color: transparent; /* makes the text transparent */
+  background-clip: text; /* clips the background to the text */
+  -webkit-background-clip: text; /* necessary for webkit-based browsers */
+}
+
+.bggr1 {
+  background: radial-gradient(
+    50% 50% at 16.8% 18.3%,
+    white,
+    rgb(184, 148, 255) 37.7%,
+    rgb(24, 0, 66)
+  );
+  box-shadow: -20px -20px 50px rgba(255, 255, 255, 0.5),
+    -20px -20px 80px rgb(255, 255, 255, 0.1), 0 0 50px rgb(140, 69, 255);
+}
+
+.bggr2 {
+  background: radial-gradient(
+    75% 75% at center center,
+    rgb(140, 69, 255, 0.5) 15%,
+    rgb(14, 0, 36, 0.5) 78%,
+    transparent
+  );
+}
+
+.bggr3 {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0) 10%,
+    rgba(0, 0, 0) 90%,
+    transparent
+  );
+}
+
+.bggr4 {
+  background: rgb(74, 32, 138);
+}

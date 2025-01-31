@@ -1,40 +1,21 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ImageAnalyzer from "./Pages/ImageAnalyzer";
 import Home from "./Pages/Home";
+import Home1 from "./Pages/Home1";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home1 />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/Analyze" element={<ImageAnalyzer />} />
       </Routes>
     </Router>
   );
 };
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // const App = () => {
 //   const [image, setImage] = useState(null);
