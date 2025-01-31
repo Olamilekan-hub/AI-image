@@ -39,7 +39,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative mt-16 container">
+      <div className="relative mt-16 px-5 lg:px-12 xl:px-28 2xl:px-42">
         <h1 className="bggr text-[90px] md:text-[160px] md:leading-none font-semibold tracking-tighter bg-white text-center">
           SpectraAI
         </h1>

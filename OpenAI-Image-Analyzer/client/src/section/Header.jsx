@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="py-4 border-b border-white/15 md:border-none sticky top-0 z-10 ">
       <div className="absolute inset-0 backdrop-blur -z-10 md:hidden "></div>
-          <div className="container">
+      <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
                     <div className="flex justify-between items-center md:border border-white/15 md:p-2.5 rounded-xl max-w-2xl mx-auto relative">
                     <div className="absolute inset-0 backdrop-blur -z-10 hidden md:block"></div>
                               <div className="inline-flex justify-center items-center">

@@ -34,7 +34,7 @@ const tabs = [
 const Features = () => {
   return (
     <section id="features" className='py-20 py-24'>
-      <div className='container'>
+      <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
       <h2 className="text-5xl md:text-6xl font-medium text-center tracking tighter"> Analyze your Image Effortlessly</h2>
       <p className='text-white/70 text-lg md:text-xl max-w-2xl mx-auto tracking-thight text-center mt-5'> Get real time Image Analysis. Get any information you want about your
           image effortlessly with SpectraAI, where Smart Technology meets
