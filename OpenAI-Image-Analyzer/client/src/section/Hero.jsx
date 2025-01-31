@@ -2,14 +2,15 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import {motion} from "framer-motion"
+import stars from "/images/stars.png"
 
 const Hero = () => {
   return (
     <motion.section
       className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3"
-      style={{ backgroundImage: "url('/images/stars.png')" }}
+      style={{ backgroundImage: `url(${stars})` }}
       animate={{
-        backgroundPositionX: 
+        backgroundPositionX: stars.width
       }}
     >
 
