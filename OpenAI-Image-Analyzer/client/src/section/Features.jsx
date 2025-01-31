@@ -134,7 +134,7 @@ const Features = () => {
     const options = {
       times,
       repeat: Infinity,
-      duration: 4,
+      duration: 10,
       ease: "linear",
       repeatType: "loop",
     };
