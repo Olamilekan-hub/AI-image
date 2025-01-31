@@ -45,7 +45,21 @@ const FeatureTab = ({ icon, title, isNew, par }) => {
 
   const maskImages = useMotionTemplate`radial-gradient(80px at ${xPercentage}% ${yPercentage}%, black, transparent)`;
   useEffect(() => {
+    if (!tabRef.current) return;
+    const rect = tabRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const { height, width } = rect;
+    const circumference = height * 2 + width * 2;
+
+    const times = [
+      0,
+      width / circumference,
+      (width + height) / circumference,
+      (width * 2 + height) / circumference,
+      1,
+    ];
     const options = {
+      times,
       repeat: Infinity,
       duration: 4,
       ease: "linear",
@@ -64,6 +78,7 @@ const FeatureTab = ({ icon, title, isNew, par }) => {
 
   return (
     <div
+      ref={tabRef}
       onMouseEnter={handleTabHover}
       key={title}
       className="border border-white/15 flex p-2.5 rounded-xl gap-2.5 items-center lg:flex-1 relative"
@@ -95,15 +110,45 @@ const FeatureTab = ({ icon, title, isNew, par }) => {
 };
 
 const Features = () => {
+  const tabRef = useRef(null);
+  // const dotLottieRef = useRef(null);
+
+  const xPercentage = useMotionValue(0);
+  const yPercentage = useMotionValue(0);
+
+  const maskImages = useMotionTemplate`radial-gradient(80px at ${xPercentage}% ${yPercentage}%, black, transparent)`;
+  useEffect(() => {
+    if (!tabRef.current) return;
+    const rect = tabRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const { height, width } = rect;
+    const circumference = height * 2 + width * 2;
+
+    const times = [
+      0,
+      width / circumference,
+      (width + height) / circumference,
+      (width * 2 + height) / circumference,
+      1,
+    ];
+    const options = {
+      times,
+      repeat: Infinity,
+      duration: 4,
+      ease: "linear",
+      repeatType: "loop",
+    };
+    animate(xPercentage, [0, 100, 100, 0, 0], options);
+    animate(yPercentage, [0, 0, 100, 100, 0], options);
+  }, [xPercentage, yPercentage]);
+
   return (
     <section id="features" className="py-20 py-24">
       <div className="px-5 lg:px-12 xl:px-28 2xl:px-42">
         <h2 className="text-5xl md:text-6xl font-medium text-center tracking tighter">
-          {" "}
           Analyze your Image Effortlessly
         </h2>
         <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto tracking-thight text-center mt-5">
-          {" "}
           Get real time Image Analysis. Get any information you want about your
           image effortlessly with SpectraAI, where Smart Technology meets
           user-friendly Image Analysis tools.
@@ -118,9 +163,17 @@ const Features = () => {
           {/* <div className='aspect-video bg-cover  border border-white/20 rounded-lg' style={{backgroundImage: `url(/images/product-image.png)`}}></div> */}
           {tabs.map((tab) => (
             <div
+              ref={tabRef}
               key={tab.title}
-              className="border border-white/15 flex px-3 py-5 rounded-xl gap-2.5 items-center justify-center lg:flex-1 lg:flex-col"
+              className="border border-white/15 flex px-3 py-5 rounded-xl gap-2.5 items-center justify-center lg:flex-1 lg:flex-col relative"
             >
+              <motion.div
+                className="absolute inset-0 -m-px rounded-xl border bordr-[#A369FF]"
+                style={{
+                  maskImage: maskImages,
+                  WebkitMaskImage: maskImages,
+                }}
+              ></motion.div>
               <div className="border h-12 w-12 border-white/15 rounded-lg inline-flex justify-center items-center">
                 <DotLottiePlayer src={tab.icon} className="h-5 w-5" autoplay />
               </div>
