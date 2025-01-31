@@ -1,19 +1,36 @@
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import {motion} from "framer-motion"
 
 const Hero = () => {
   return (
-    <section
+    <motion.section
       className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3"
       style={{ backgroundImage: "url('/images/stars.png')" }}
+      animate={{
+        backgroundPositionX: 
+      }}
     >
 
       <div className="absolute inset-0 bggr2"></div>
 
       {/* Start Planet */}
       <div id="Shadows" className="absolute h-64 w-64 md:h-96 md:w-96 bg-purple-500 rounded-full border-white/30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bggr1 shadow-[-20px -20px 50px rgb(255, 255, 255, .5)]"></div>
-      <div id="First Ring" className="absolute h-[344px] w-[344px] md:w-[580px] md:h-[580px] border rounded-full border-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20">
+      <motion.div 
+      style={{
+        // translateY: '-50%',
+        // translateX: '-50%'
+      }}
+      animate={{
+        rotate: '1turn'
+      }} 
+      transition={{
+        repeat: Infinity,
+        duration: 60,
+        ease: 'linear',
+      }}
+      id="First Ring" className="absolute h-[344px] w-[344px] md:w-[580px] md:h-[580px] border rounded-full border-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20">
         <div id="Circle on Ring 1" className="absolute h-2 w-2 top-1/2 left-0 bg-white rounded-full -translate-x-1/2 -translate-1/2"></div>
         <div id="Circle on Ring 2" className="absolute h-2 w-2 top-0 left-1/2 bg-white rounded-full -translate-x-1/2 -translate-1/2"></div>
 
@@ -21,13 +38,31 @@ const Hero = () => {
           <div id="Child Circle 1" className="h-2 w-2 bg-white rounded-full"></div>
         </div>
 
-      </div>
+      </motion.div>
 
       {/* Second Ring */}
-      <div id="Second Ring" className="absolute h-[444px] w-[444px] md:h-[780px] md:w-[780px] rounded-full border border-white/20 -translate-1/2 top-1/2 left-1/2 border-dashed"></div>
+      <motion.div
+      animate={{
+        rotate: '-1turn'
+      }} 
+      transition={{
+        repeat: Infinity,
+        duration: 60,
+        ease: 'linear',
+      }}
+       id="Second Ring" className="absolute h-[444px] w-[444px] md:h-[780px] md:w-[780px] rounded-full border border-white/20 -translate-1/2 top-1/2 left-1/2 border-dashed"></motion.div>
 
       {/* Third Ring */}
-      <div className="absolute h-[544px] w-[544px] md:h-[980px] md:w-[980px] rounded-full border border-white opacity-20 -translate-1/2 top-1/2 left-1/2">
+      <motion.div
+      animate={{
+        rotate: '1turn'
+      }} 
+      transition={{
+        repeat: Infinity,
+        duration: 90,
+        ease: 'linear',
+      }}
+      className="absolute h-[544px] w-[544px] md:h-[980px] md:w-[980px] rounded-full border border-white opacity-20 -translate-1/2 top-1/2 left-1/2">
 
       <div id="Circle on Ring 1" className="absolute h-2 w-2 top-1/2 left-0 bg-white rounded-full -translate-x-1/2 -translate-1/2"></div>
         <div id="Circle on Ring 2" className="absolute h-2 w-2 top-1/2 left-full bg-white rounded-full -translate-x-1/2 -translate-1/2"></div>
@@ -36,7 +71,7 @@ const Hero = () => {
           <div id="Child Circle 1" className="h-2 w-2 bg-white rounded-full"></div>
         </div>
 
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div className="relative mt-16 mx-auto px-5 lg:px-12 xl:px-28 2xl:px-42">
@@ -54,7 +89,7 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 export default Hero;
