@@ -22,9 +22,11 @@ const Header = () => {
                                         </nav>
                               </div>
                               <div className="flex gap-4 items-center">
-                                        <Button>
-                                            <Link to="/">Try $AI </Link><IoIosArrowRoundForward />
+                                <Link to="/analyze">
+                                        <Button as="a" href="/analyze">
+                                            Try $AI <IoIosArrowRoundForward />
                                         </Button>
+                                </Link>
                                         <IoMenu className="md:hidden block text-white h-8 w-8" />
                               </div>
                     </div>

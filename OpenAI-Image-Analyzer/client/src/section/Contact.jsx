@@ -97,7 +97,7 @@ const Contact = () => {
           <div className="relative flex flex-col md:flex-row">
             <div className="px-5 mb-5 flex-1">
               <h1 className="text-4xl font-semibold tracking-tighter mb-3 md:text-5xl lg:text6xl">Contact us.</h1>
-              <p className="text-md tracking-tight">
+              <p className="text-md tracking-tight lg:text-lg">
                 Have questions or need support? Contact our dedicated team today
                 for personalized assistance and expert advice. We’re here to
                 help you succeed.
@@ -107,7 +107,7 @@ const Contact = () => {
             {/* Contact Form */}
             <form onSubmit={handleSubmit} className="flex-1">
               <div className="px-4">
-                <div className="border border-white/30 rounded-lg p-5 bg-black/50">
+                <div className="border border-white/30 rounded-lg p-5 bg-black/30">
                   {/* Name */}
                   <label
                     htmlFor="name"

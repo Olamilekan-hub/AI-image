@@ -141,10 +141,11 @@ const Hero = () => {
           user-friendly Image Analysis tools.
         </p>
         <div className="flex justify-center mt-5">
-          <Button>
-            <Link to="/">Try $AI </Link>
-            <IoIosArrowRoundForward />
-          </Button>
+          <Link to="/analyze">
+            <Button as="a" href="/analyze">
+              Try $AI <IoIosArrowRoundForward />
+            </Button>
+          </Link>
         </div>
       </div>
     </motion.section>

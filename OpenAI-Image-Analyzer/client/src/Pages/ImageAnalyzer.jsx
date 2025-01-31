@@ -64,24 +64,8 @@ const ImageAnalyzer = () => {
   };
 
   return (
-    <div className="overflow-auto h-screen">
-      {/* <Header /> */}
-
-      <video id="Video" className="hero-video" autoPlay loop muted playsInline>
-        <source
-          src="/videos/technology-digital-or-information-data-concept-free-video-vmake.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
-
-      <h1 className="text-3xl md:4xl lg:text-6xl p-1 md:p-2 lg:p-4 fixed w-full top-0 cf bg-gray-900/75 font-bold text-gray-200 text-center z-20">
-        SpectraAI $SAI
-      </h1>
-
-      <div
+    <div
         id="Analyze"
-        className="w-full h-screen overflow-y-auto bg-gray-900/45 p-4 flex justify-center items-center  mt-10 md:mt-15 lg:mt-20"
       >
         <section
           id="search-section"
@@ -112,8 +96,6 @@ const ImageAnalyzer = () => {
           />
         </section>
       </div>
-      {/* <Footer /> */}
-    </div>
   );
 };
 
