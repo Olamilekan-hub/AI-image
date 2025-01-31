@@ -10,7 +10,12 @@ const Hero = () => {
       className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3"
       style={{ backgroundImage: `url(${stars})` }}
       animate={{
-        backgroundPositionX: stars.width
+        backgroundPositionX: "100%",
+      }}
+      transition={{
+        reapeat: Infinity,
+        ease: 'linear',
+        duration: 120,
       }}
     >
 
