@@ -143,7 +143,7 @@ const Hero = () => {
         <div className="flex justify-center mt-5">
           <Link to="/analyze">
             <Button as="a" href="/analyze">
-              Try $AI <IoIosArrowRoundForward />
+              Try $SAI <IoIosArrowRoundForward />
             </Button>
           </Link>
         </div>

@@ -58,7 +58,7 @@ const Header = () => {
             <div className="flex gap-4 items-center">
               <Link to="/analyze">
                 <Button>
-                  Try $AI <IoIosArrowRoundForward />
+                  Try $SAI <IoIosArrowRoundForward />
                 </Button>
               </Link>
               <button  onClick={toggleMenu}>
@@ -76,7 +76,8 @@ const Header = () => {
         <div className="absolute bg-black/90 w-full z-30">
           <div className="md:hidden block w-full">
             <nav className="w-full flex flex-col text-sm items-center my-5">
-              <div onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
+
+              <a href="" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
                   <SiGoogledocs className="text-white h-5 w-5" />
                   <a
@@ -87,10 +88,10 @@ const Header = () => {
                   </a>
                 </div>
                 <GoArrowUpRight className="text-white h-8 w-8" />
-              </div>              
+              </a>              
               <hr className="w-full m-0 p-0 text-white/80" />
 
-              <div onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
+              <a href="https://github.com/" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
                   <FaGithub className="text-white h-5 w-5" />
                   <a
@@ -101,10 +102,10 @@ const Header = () => {
                   </a>
                 </div>
                 <GoArrowUpRight className="text-white h-8 w-8" />
-              </div>
+              </a>
               <hr className="w-full m-0 p-0 text-white/80" />
 
-              <div onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
+              <a href="#contact" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
                   <GrContact className="text-white h-5 w-5" />
                   <a
@@ -115,10 +116,10 @@ const Header = () => {
                   </a>
                 </div>
                 <GoArrowUpRight className="text-white h-8 w-8" />
-              </div>
+              </a>
               <hr className="w-full m-0 p-0 text-white/80" />
 
-              <div onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
+              <a href="#features" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
                   <MdDataUsage className="text-white h-5 w-5" />
                   <a
@@ -129,7 +130,7 @@ const Header = () => {
                   </a>
                 </div>
                 <GoArrowUpRight className="text-white h-8 w-8" />
-              </div>
+              </a>
             </nav>
           </div>
         </div>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Header from "../section/Header";
+import Footer from "../section/Footer"
 import useSurpriseOptions from "../utils/useSurpriseOptions";
 import { uploadImageApi, analyzeImageApi } from "../utils/api";
 import ImageUpload from "../components/ImageUpload";
@@ -6,8 +8,6 @@ import ImageQuestionInput from "../components/ImageQuestionInput";
 import ImageResponse from "../components/ImageResponse";
 import ExtraInfo from "../components/ExtraInfo";
 import QuestionPrompt from "../components/QuestionPrompt";
-// import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const ImageAnalyzer = () => {
   const [image, setImage] = useState(null);
@@ -64,9 +64,9 @@ const ImageAnalyzer = () => {
   };
 
   return (
-    <div
-        id="Analyze"
-      >
+    <>
+    <Header />
+      <div id="Analyze">
         <section
           id="search-section"
           className="w-full md:w-[85%] lg:w-[70%] mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col"
@@ -96,6 +96,8 @@ const ImageAnalyzer = () => {
           />
         </section>
       </div>
+      <Footer />
+    </>
   );
 };
 
