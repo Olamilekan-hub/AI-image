@@ -13,7 +13,7 @@ const useRelativeMousePosition = (to) => {
     if (!to.current) return;
     const {top, left} = to.current.getBoundingClientRect();
     mouseX.set(event.x - left)
-    mouseY.set(event.x - top)
+    mouseY.set(event.y - top)
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Action = () => {
 
   const [mouseX, mouseY] = useRelativeMousePosition(borderDivRef);
 
-  useMotionTemplate `radial-gradient(50% 50% at ${mouseX}px ${mouseY}px, black, transparent)`;
+  const maskImage = useMotionTemplate `radial-gradient(50% 50% at ${mouseX}px ${mouseY}px, black, transparent)`;
 
   return (
     <section className="py-20 md:py-24" ref={sectionRef}>
@@ -64,7 +64,7 @@ const Action = () => {
                       <motion.div 
                       className="absolute inset-0 bggr4 bg-blend-overlay opacity-0 group-hover:opacity-100 transition duration-700"
                       style={{ 
-                                maskImage: 'radial-gradient(50% 50% at 0px 0px, black, transparent)',
+                                maskImage,
                                 backgroundImage: "url('/images/grid-lines.png')"
                       }}></motion.div>
                               <div className="relative lg:py-18">
