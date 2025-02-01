@@ -43,7 +43,7 @@ const ImageAnalyzer = () => {
       return;
     }
     if (!value) {
-      setError("Error: Please ask a question");
+      setError("Error: Please ask a question! Refresh");
       return;
     }
     setLoading(true);
