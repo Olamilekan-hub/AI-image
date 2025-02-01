@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import stars from "/images/stars.png";
 import { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, useMotionTemplate } from "framer-motion";
 
 const Action = () => {
   const sectionRef = useRef(null);
@@ -18,12 +18,12 @@ const Action = () => {
     [-300, 300]
   );
 
-
+  useMotionTemplate `radial-gradient(50% 50% at 0px 0px, black, transparent)`;
 
   return (
     <section className="py-20 md:py-24">
       <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
-                    <motion.div className="border border-white/15 py-24  overflow-hidden rounded-xl relative animate-background" 
+                    <motion.div className="border border-white/15 py-24  overflow-hidden rounded-xl relative animate-background group" 
                     ref={sectionRef}
                     style={{ 
                       backgroundImage: `url(${stars})`,
@@ -32,15 +32,21 @@ const Action = () => {
                       backgroundRepeat: 'no-repeat',
                       }}
                       >
-                              <div 
-                              className="absolute inset-0 bggr4 bg-blend-overlay"
-                              style={{ 
-                                        maskImage: 'radial-gradient(50% 50% at 50% 35%, black, transparent)',
-                                        backgroundImage: "url('/images/grid-lines.png')"
-                              }}></div>
-                              <div className="relative">
-                                        <h2 className="text-5xl md:text-6xl max-w-md mx-auto tracking-tighter tect center font-medium text-center">AI Image Analysis for everyone.</h2>
-                                        <p className="text-center text-lg md:text-xl max-w-xs mx-auto text-white/70 px-4 mt-5 tracking-tight">Get Weekly updates about SpectraAI.</p>
+                      <div 
+                      className="absolute inset-0 bggr4 bg-blend-overlay group-hover:opacity-0 transition duration-700"
+                      style={{ 
+                                maskImage: 'radial-gradient(50% 50% at 50% 35%, black, transparent)',
+                                backgroundImage: "url('/images/grid-lines.png')"
+                      }}></div>
+                      <motion.div 
+                      className="absolute inset-0 bggr4 bg-blend-overlay opacity-0 group-hover:opacity-100 transition duration-700"
+                      style={{ 
+                                maskImage: 'radial-gradient(50% 50% at 0px 0px, black, transparent)',
+                                backgroundImage: "url('/images/grid-lines.png')"
+                      }}></motion.div>
+                              <div className="relative lg:py-18">
+                                        <h2 className="text-5xl md:text-6xl  mx-auto tracking-tighter tect center font-medium text-center">AI Image Analysis for everyone.</h2>
+                                        <p className="text-center text-lg md:text-xl max-w-sm mx-auto text-white/70 px-4 mt-5 tracking-tight">Get Weekly updates about SpectraAI.</p>
                                         <div className="flex justify-center mt-5">
                                                   <Button>
                                                             <Link to="/">Subscribe</Link><IoIosArrowRoundForward />

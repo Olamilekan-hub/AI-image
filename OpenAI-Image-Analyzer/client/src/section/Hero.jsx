@@ -29,8 +29,8 @@ const Hero = () => {
       style={{
         backgroundImage: `url(${stars})`,
         backgroundPositionY,
-        backgroundSize: 'cover', 
-        backgroundRepeat: 'no-repeat',
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
       }}
       // animate={{
       //   backgroundPositionX: "100%",
@@ -133,7 +133,7 @@ const Hero = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative mt-16 mx-auto px-5 lg:px-12 xl:px-28 2xl:px-42">
+      <div className="relative mt-16 mx-auto px-2 lg:px-12 xl:px-28 2xl:px-42">
         <h1 className="bggr text-[90px] md:text-[160px] md:leading-none font-semibold tracking-tighter bg-white text-center">
           SpectraAI
         </h1>
