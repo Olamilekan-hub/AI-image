@@ -66,7 +66,7 @@ const ImageAnalyzer = () => {
 
   return (
     <>
-      <Header />
+      <Header className="fixed sticky top-0" />
       <BgWrapper>
         <section id="Analyze" >
           <section

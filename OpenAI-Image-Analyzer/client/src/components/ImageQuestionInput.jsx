@@ -20,7 +20,7 @@ const ImageQuestionInput = ({
         value={value}
         placeholder="Ask anything about the image..."
         onChange={(e) => setValue(e.target.value)}
-        className="w-[80%] border-none p-2  outline-none text-sm placeholder:text-white/30 placeholder:italic"
+        className="w-[80%] border-none p-2  outline-none text-sm placeholder:text-white/30 placeholder:italic focus:ring-1 focus:rounded-lg"
       />
       {!response && !error ? (
         <Button
