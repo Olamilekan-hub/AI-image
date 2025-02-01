@@ -155,5 +155,13 @@ body {
 }
 
 .animate-background {
-  animation: backgroundMove 15s linear infinite;
+  animation: backgroundMove 20s linear infinite;
+}
+
+.animate-background1 {
+  animation: backgroundMove 20s linear infinite;
+}
+
+.animate-background2 {
+  animation: backgroundMove 20s linear infinite;
 }

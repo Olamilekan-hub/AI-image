@@ -23,7 +23,7 @@ const Action = () => {
   return (
     <section className="py-20 md:py-24">
       <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
-                    <motion.div className="border border-white/15 py-24  overflow-hidden rounded-xl relative animate-background group" 
+                    <motion.div className="border border-white/15 py-24  overflow-hidden rounded-xl relative animate-background2 group" 
                     ref={sectionRef}
                     style={{ 
                       backgroundImage: `url(${stars})`,

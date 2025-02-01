@@ -25,7 +25,7 @@ const Hero = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3 animate-background"
+      className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3 animate-background1"
       style={{
         backgroundImage: `url(${stars})`,
         backgroundPositionY,
