@@ -1,4 +1,5 @@
 import { FaSpinner } from "react-icons/fa6";
+import ReactMarkdown from "react-markdown"
 
 const ImageResponse = ({ response, error, loading }) => {
   return (
@@ -23,9 +24,9 @@ const ImageResponse = ({ response, error, loading }) => {
       {response && (
         <p
           id="response"
-          className="bg-white/50 text-black mt-2 mb-8 rounded-lg p-5  w-[85%] md:w-[68%]"
+          className="bg-white/50 text-black font-semibold mt-2 mb-8 rounded-lg p-5  w-[85%] md:w-[68%]"
         >
-          {response}
+          <ReactMarkdown>{response}</ReactMarkdown>
         </p>
       )}
     </>

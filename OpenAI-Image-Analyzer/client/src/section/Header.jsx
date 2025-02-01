@@ -1,4 +1,5 @@
 import { IoMenu } from "react-icons/io5";
+// import {Link} from "react-router-dom"
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
@@ -25,9 +26,9 @@ const Header = () => {
           <div className="flex justify-between items-center md:border border-white/15 md:p-2.5 rounded-xl max-w-2xl mx-auto relative">
             <div className="absolute inset-0 backdrop-blur -z-10 hidden md:block"></div>
             <div className="inline-flex justify-center items-center">
-              <a href="">
+              <Link to="/">
               <img src="/images/Variant 1.png" className="h-8 w-8" alt="logo" />
-              </a>
+              </Link>
             </div>
             <div className="hidden md:block">
               <nav className="flex gap-8 text-sm items-center">
