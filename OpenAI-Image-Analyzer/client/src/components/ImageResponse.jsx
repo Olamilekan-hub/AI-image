@@ -6,7 +6,7 @@ const ImageResponse = ({ response, error, loading }) => {
       {loading && (
         <p
           id="loading"
-          className="text-center w-full text-md md:text-xl font-semibold bg-gray-100 mb-8 text-black p-5 rounded-lg shadow-lg"
+          className="flex items-center justify-center w-[50%] text-center w-full text-sm md:text-lg font-semibold bg-white/50 mb-8 text-black p-5 rounded-lg"
         >
           Generating Analysis...
           <FaSpinner className="animate-spin mr-2" />
@@ -23,7 +23,7 @@ const ImageResponse = ({ response, error, loading }) => {
       {response && (
         <p
           id="response"
-          className="bg-gray-100 text-black mt-2 mb-8 rounded-lg p-5 shadow-lg w-[78%] md:w-[68%]"
+          className="bg-white/50 text-black mt-2 mb-8 rounded-lg p-5  w-[85%] md:w-[68%]"
         >
           {response}
         </p>
