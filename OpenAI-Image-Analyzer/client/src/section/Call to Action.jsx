@@ -28,17 +28,9 @@ const Action = () => {
                     style={{ 
                       backgroundImage: `url(${stars})`,
                       backgroundPositionY,
-                      // backgroundPositionX,
+                      backgroundSize: 'cover', 
+                      backgroundRepeat: 'no-repeat',
                       }}
-                      // animate={{
-                      // backgroundPositionX: "100%",
-                      // }}
-                      // transition={{
-                      // reapeat: Infinity,
-                      // repeatType: 'loop',
-                      // ease: "linear",
-                      // duration: 120,
-                      // }}
                       >
                               <div 
                               className="absolute inset-0 bggr4 bg-blend-overlay"

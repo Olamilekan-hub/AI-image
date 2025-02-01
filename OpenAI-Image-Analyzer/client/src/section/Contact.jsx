@@ -1,7 +1,10 @@
 import Button from "../components/Button";
 import { useState } from "react";
 import { FaPaperPlane, FaSpinner, FaCheck } from "react-icons/fa";
-import useCurrentDateTime from "../utils/useDateTimeDisplay";
+// import useCurrentDateTime from "../utils/useDateTimeDisplay";
+import stars from "/images/stars.png";
+import { useRef } from "react";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 const Contact = () => {
   const [status, setStatus] = useState("");
@@ -78,12 +81,31 @@ const Contact = () => {
       );
     }
   };
+
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const backgroundPositionY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-300, 300]
+  );
+
   return (
     <section className="py-20 md:py-24">
-      <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
-        <div
-          className="border border-white/15 py-14  overflow-hidden rounded-xl relative"
-          style={{ backgroundImage: "url('/images/stars.png')" }}
+      <div className="px-5 lg:px-12 xl:px-28 2xl:px-42">
+        <motion.div
+          ref={sectionRef}
+          className="border border-white/15 py-14  overflow-hidden rounded-xl relative animate-background"
+          style={{
+            backgroundImage: `url(${stars})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPositionY,
+          }}
         >
           <div
             className="absolute inset-0 bggr4 bg-blend-overlay"
@@ -96,7 +118,9 @@ const Contact = () => {
 
           <div className="relative flex flex-col md:flex-row">
             <div className="px-5 mb-5 flex-1">
-              <h1 className="text-4xl font-semibold tracking-tighter mb-3 md:text-5xl lg:text6xl">Contact us.</h1>
+              <h1 className="text-4xl font-semibold tracking-tighter mb-3 md:text-5xl lg:text6xl">
+                Contact us.
+              </h1>
               <p className="text-md tracking-tight lg:text-lg">
                 Have questions or need support? Contact our dedicated team today
                 for personalized assistance and expert advice. We’re here to
@@ -173,7 +197,7 @@ const Contact = () => {
               </div>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
