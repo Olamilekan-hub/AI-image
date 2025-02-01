@@ -29,8 +29,6 @@ const Hero = () => {
       style={{
         backgroundImage: `url(${stars})`,
         backgroundPositionY,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
       }}
       // animate={{
       //   backgroundPositionX: "100%",

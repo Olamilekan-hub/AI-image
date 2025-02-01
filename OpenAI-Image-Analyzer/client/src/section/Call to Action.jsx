@@ -2,11 +2,34 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import stars from "/images/stars.png";
-import { useRef } from "react";
-import { useScroll, useTransform, motion, useMotionTemplate } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useScroll, useTransform, motion, useMotionTemplate, useMotionValue } from "framer-motion";
+
+const useRelativeMousePosition = (to) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const  updateMousePosition = (event) => {
+    if (!to.current) return;
+    const {top, left} = to.current.getBoundingClientRect();
+    mouseX.set(event.x - left)
+    mouseY.set(event.x - top)
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousemove', updateMousePosition);
+
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition);
+    }
+  });
+
+  return [mouseX, mouseY];
+};
 
 const Action = () => {
   const sectionRef = useRef(null);
+  const borderDivRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -18,18 +41,18 @@ const Action = () => {
     [-300, 300]
   );
 
-  useMotionTemplate `radial-gradient(50% 50% at 0px 0px, black, transparent)`;
+  const [mouseX, mouseY] = useRelativeMousePosition(borderDivRef);
+
+  useMotionTemplate `radial-gradient(50% 50% at ${mouseX}px ${mouseY}px, black, transparent)`;
 
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-20 md:py-24" ref={sectionRef}>
       <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
                     <motion.div className="border border-white/15 py-24  overflow-hidden rounded-xl relative animate-background2 group" 
-                    ref={sectionRef}
+                    ref={borderDivRef}
                     style={{ 
                       backgroundImage: `url(${stars})`,
                       backgroundPositionY,
-                      backgroundSize: 'cover', 
-                      backgroundRepeat: 'no-repeat',
                       }}
                       >
                       <div 

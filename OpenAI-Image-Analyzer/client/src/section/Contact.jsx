@@ -95,15 +95,13 @@ const Contact = () => {
   );
 
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-20 md:py-24"
+          ref={sectionRef}>
       <div className="px-5 lg:px-12 xl:px-28 2xl:px-42">
         <motion.div
-          ref={sectionRef}
           className="border border-white/15 py-14  overflow-hidden rounded-xl relative animate-background"
           style={{
             backgroundImage: `url(${stars})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
             backgroundPositionY,
           }}
         >
