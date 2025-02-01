@@ -20,5 +20,5 @@ export const analyzeImageApi = async (message, filePath) => {
     "https://ai-image-production.up.railway.app/openai",
     options
   );
-  return response();
+  return response.text();
 };

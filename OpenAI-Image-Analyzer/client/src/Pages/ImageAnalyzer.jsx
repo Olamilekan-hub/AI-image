@@ -50,6 +50,7 @@ const ImageAnalyzer = () => {
     try {
       const data = await analyzeImageApi(value, filePath);
       setResponse(data);
+      console.log(data);
       setLoading(false);
     } catch {
       setLoading(false);
