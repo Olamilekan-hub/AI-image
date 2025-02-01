@@ -18,10 +18,6 @@ const Hero = () => {
     [-300, 300]
   );
 
-  // useMotionValueEvent(ScrollYProgress, "change", (value) => {
-  //   console.log('scrollYProgress', value)
-  // })
-
   return (
     <motion.section
       ref={sectionRef}
@@ -30,14 +26,6 @@ const Hero = () => {
         backgroundImage: `url(${stars})`,
         backgroundPositionY,
       }}
-      // animate={{
-      //   backgroundPositionX: "100%",
-      // }}
-      // transition={{
-      //   reapeat: Infinity,
-      //   ease: "linear",
-      //   duration: 60,
-      // }}
     >
       <div className="absolute inset-0 bggr2"></div>
 

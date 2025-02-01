@@ -1,9 +1,9 @@
 const ExtraInfo = () => (
   <p
     id="extra-info"
-    className="text-center text-gray-400 bg-gray-700 font-medium text-sm md:text-lg lg:text-lg rounded-2xl p-2"
+    className="text-center text-white/80 hover:text-white font-medium text-sm  p-2"
   >
-    Upload your image to discover its underlying technology and let SpectraAI
+    Upload your image to discover its underlying technology, let SpectraAI
     analyze it for you.
   </p>
 );

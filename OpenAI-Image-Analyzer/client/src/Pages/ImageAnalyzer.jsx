@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../section/Header";
-import Footer from "../section/Footer"
+import Footer from "../section/Footer";
 import useSurpriseOptions from "../utils/useSurpriseOptions";
 import { uploadImageApi, analyzeImageApi } from "../utils/api";
 import ImageUpload from "../components/ImageUpload";
@@ -8,6 +8,7 @@ import ImageQuestionInput from "../components/ImageQuestionInput";
 import ImageResponse from "../components/ImageResponse";
 import ExtraInfo from "../components/ExtraInfo";
 import QuestionPrompt from "../components/QuestionPrompt";
+import BgWrapper from "../section/bg";
 
 const ImageAnalyzer = () => {
   const [image, setImage] = useState(null);
@@ -65,37 +66,43 @@ const ImageAnalyzer = () => {
 
   return (
     <>
-    <Header />
-      <div id="Analyze">
-        <section
-          id="search-section"
-          className="w-full md:w-[85%] lg:w-[70%] mb-0 shadow-xl shadow-gray-500 bg-gray-800 border-2 border-gray-200 rounded-xl px-8 space-y-4 flex flex-col"
-        >
-          <ImageUpload
-            className="flex justify-end item-right"
-            image={image}
-            uploadImage={uploadImage}
-          />
+      <Header />
+      <BgWrapper>
+        <section id="Analyze" >
+          <section
+            id="search-section"
+            className="w-full bg-black/20 px-3 space-y-4 flex flex-col"
+          >
+            <ImageUpload
+              className=""
+              image={image}
+              uploadImage={uploadImage}
+            />
 
-          <ExtraInfo />
+            <ExtraInfo />
 
-          <ImageResponse response={response} error={error} loading={loading} />
+            <ImageResponse
+              response={response}
+              error={error}
+              loading={loading}
+            />
 
-          <QuestionPrompt
-            surprise={surprise}
-            response={response}
-            loading={loading}
-          />
-          <ImageQuestionInput
-            value={value}
-            setValue={setValue}
-            analyzeImage={analyzeImage}
-            response={response}
-            error={error}
-            clear={clear}
-          />
+            <QuestionPrompt
+              surprise={surprise}
+              response={response}
+              loading={loading}
+            />
+            <ImageQuestionInput
+              value={value}
+              setValue={setValue}
+              analyzeImage={analyzeImage}
+              response={response}
+              error={error}
+              clear={clear}
+            />
+          </section>
         </section>
-      </div>
+      </BgWrapper>
       <Footer />
     </>
   );

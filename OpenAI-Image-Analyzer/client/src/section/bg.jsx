@@ -1,6 +1,4 @@
-import Button from "../components/Button";
-import { Link } from "react-router-dom";
-import { IoIosArrowRoundForward } from "react-icons/io";
+
 import stars from "/images/stars.png";
 import { useEffect, useRef } from "react";
 import { useScroll, useTransform, motion, useMotionTemplate, useMotionValue } from "framer-motion";
@@ -27,7 +25,7 @@ const useRelativeMousePosition = (to) => {
   return [mouseX, mouseY];
 };
 
-const Action = () => {
+const BgWrapper = ({ children }) => {
   const sectionRef = useRef(null);
   const borderDivRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -46,9 +44,9 @@ const Action = () => {
   const maskImage = useMotionTemplate `radial-gradient(50% 50% at ${mouseX}px ${mouseY}px, black, transparent)`;
 
   return (
-    <section className="py-20 md:py-24" ref={sectionRef}>
-      <div className='px-5 lg:px-12 xl:px-28 2xl:px-42'>
-                    <motion.div className="border border-white/15 py-24  overflow-hidden rounded-xl relative animate-background2 group" 
+    <section className="py-10 md:py-16" ref={sectionRef}>
+      <div className='px-2 lg:px-8 xl:px-16 2xl:px-42'>
+                    <motion.div className="border border-white/15  overflow-hidden rounded-xl relative animate-background2 group" 
                     ref={borderDivRef}
                     style={{ 
                       backgroundImage: `url(${stars})`,
@@ -68,18 +66,12 @@ const Action = () => {
                                 backgroundImage: "url('/images/grid-lines.png')"
                       }}></motion.div>
                       
-                              <div className="relative lg:py-18">
-                                        <h2 className="text-5xl md:text-6xl  mx-auto tracking-tighter tect center font-medium text-center">AI Image Analysis for everyone.</h2>
-                                        <p className="text-center text-lg md:text-xl max-w-sm mx-auto text-white/70 px-4 mt-5 tracking-tight">Get Weekly updates about SpectraAI.</p>
-                                        <div className="flex justify-center mt-5">
-                                                  <Button>
-                                                            <Link to="/">Subscribe</Link><IoIosArrowRoundForward />
-                                                  </Button>
-                                        </div>
+                              <div className="relative lg:py-10">
+                                        {children}
                               </div>
                     </motion.div>
           </div>
     </section>
   );
 };
-export default Action;
+export default BgWrapper;
