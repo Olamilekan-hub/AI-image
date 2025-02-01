@@ -25,19 +25,21 @@ const Hero = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3"
+      className="h-[492px] md:h-[800px] flex items-center overflow-hidden relative   bggr3 animate-background"
       style={{
         backgroundImage: `url(${stars})`,
         backgroundPositionY,
+        backgroundSize: 'cover', 
+        backgroundRepeat: 'no-repeat',
       }}
-      animate={{
-        backgroundPositionX: "100%",
-      }}
-      transition={{
-        reapeat: Infinity,
-        ease: "linear",
-        duration: 120,
-      }}
+      // animate={{
+      //   backgroundPositionX: "100%",
+      // }}
+      // transition={{
+      //   reapeat: Infinity,
+      //   ease: "linear",
+      //   duration: 60,
+      // }}
     >
       <div className="absolute inset-0 bggr2"></div>
 

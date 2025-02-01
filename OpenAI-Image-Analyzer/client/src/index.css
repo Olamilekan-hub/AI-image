@@ -77,10 +77,10 @@
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -143,4 +143,17 @@ body {
 
 .bggr4 {
   background: rgb(74, 32, 138);
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
+
+.animate-background {
+  animation: backgroundMove 15s linear infinite;
 }
