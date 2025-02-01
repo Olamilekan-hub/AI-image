@@ -39,7 +39,7 @@ const ImageAnalyzer = () => {
   const analyzeImage = async () => {
     setResponse("");
     if (!image) {
-      setError("Error: No image uploaded");
+      setError("Error: No image uploaded! Refresh");
       return;
     }
     if (!value) {
@@ -92,6 +92,7 @@ const ImageAnalyzer = () => {
               response={response}
               loading={loading}
             />
+            
             <ImageQuestionInput
               value={value}
               setValue={setValue}

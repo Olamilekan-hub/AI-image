@@ -1,14 +1,15 @@
+import Button from "./Button1";
 
 const SurpriseButton = ({ surprise, response, loading }) => {
   return (
-    <button
+    <Button
       id="surprise"
       onClick={surprise}
-      className="bg-gray-200 text-black px-3 py- rounded-lg font-semibold hover:bg-gray-400 hover:text-gray-800"
+      className="w-1/2"
       disabled={response || loading}
     >
-      Surprise me
-    </button>
+      Prompt Suggestion
+    </Button>
   );
 };
 

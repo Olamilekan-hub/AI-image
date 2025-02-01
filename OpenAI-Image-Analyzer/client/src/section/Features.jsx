@@ -28,7 +28,7 @@ const tabs = [
   },
   {
     icon: "/lottie/stars.lottie",
-    title: "Smart keyword suggestion",
+    title: "Smart Prompt Suggestion",
     par: "Looking for the best keywords to ask? Our AI suggests relevant queries based on your image. Simply upload your image, and we’ll recommend insightful keywords to guide your next steps for optimized results.",
     isNew: true,
     backgroundPositionX: 100,

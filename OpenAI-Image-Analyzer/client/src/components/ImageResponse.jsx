@@ -15,7 +15,7 @@ const ImageResponse = ({ response, error, loading }) => {
       {error && (
         <p
           id="error"
-          className="text-red-700 italic text-lg text-center mb-4 font-semibold w-[68%]"
+          className="text-red-500 italic text-md text-center mb-4 font-semibold"
         >
           {error}
         </p>
