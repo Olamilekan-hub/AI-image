@@ -120,13 +120,11 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative mt-16 mx-auto px-2 lg:px-12 xl:px-28 2xl:px-42">
-        <h1 className="bggr text-[90px] md:text-[160px] md:leading-none font-semibold tracking-tighter bg-white text-center">
-          SpectraAI
+        <h1 className="bggr text-[80px] md:text-[160px] md:leading-none font-semibold tracking-tighter bg-white text-center">
+          Spectra AI
         </h1>
-        <p className="text-lg text-white/70 mt-5 text-center md:text-xl max-w-xl mx-auto">
-          Get real time Image Analysis. Get any information you want about your
-          image effortlessly with SpectraAI, where Smart Technology meets
-          user-friendly Image Analysis tools.
+        <p className="text-2xl text-white/70 mt-5 text-center md:text-3xl max-w-xl mx-auto">
+        Smarter Insights, Clear Vision With Spectra AI.
         </p>
         <div className="flex justify-center mt-5">
           <Link to="/analyze">

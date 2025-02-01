@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { SiGoogledocs } from "react-icons/si";
 import { IoClose } from "react-icons/io5";
-import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { MdDataUsage } from "react-icons/md";
 import { GoArrowUpRight } from "react-icons/go";
 import { GrContact } from "react-icons/gr";
@@ -40,9 +40,9 @@ const Header = () => {
                 </a>
                 <a
                   className="text-white/70 hover:text-white transition duration-300"
-                  href=""
+                  href="https://x.com/useSpectraAI"
                 >
-                  Github
+                  Twitter(X)
                 </a>
                 <a
                   className="text-white/70 hover:text-white transition duration-300"
@@ -96,12 +96,12 @@ const Header = () => {
 
               <a href="https://github.com/" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
-                  <FaGithub className="text-white h-5 w-5" />
+                  <FaXTwitter className="text-white h-5 w-5" />
                   <a
                     className="text-white/70 hover:text-white transition duration-300"
-                    href=""
+                    href="https://x.com/useSpectraAI"
                   >
-                    Github
+                    Twitter(X)
                   </a>
                 </div>
                 <GoArrowUpRight className="text-white h-8 w-8" />
