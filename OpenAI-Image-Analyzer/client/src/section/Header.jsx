@@ -19,7 +19,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header className="sticky top-0 z-50">
       <div className="py-4 border-b border-white/15 md:border-none sticky top-0 z-10 relative">
         <div className="absolute inset-0 backdrop-blur -z-10 md:hidden "></div>
         <div className="px-5 lg:px-12 xl:px-28 2xl:px-42">
