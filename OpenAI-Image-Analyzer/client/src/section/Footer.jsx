@@ -1,6 +1,6 @@
 
 import { FaXTwitter } from "react-icons/fa6";
-import { BsTelegram } from "react-icons/bs";
+// import { BsTelegram } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
                                                   <a href="#features" className="text-white/70 hover:text-white text-xs md:text-sm transition">Features</a>
                                         </nav>
                               <div className="flex gap-5 lg:flex-1 lg:justify-end">
-                                                  <a href="https://x.com/useSpectraAI" className="text-white/70 hover:text-white text-xs md:text-sm transition flex items-center gap-2"> Twitter(X)
+                                                  <a href="https://x.com/useSpectraAI" className="text-white/70 hover:text-white text-xs md:text-sm transition flex items-center gap-2"> Twitter
                                                   <FaXTwitter className="text-white/40 hover:text-white transition h-4 w-4" />
                                                    </a>
                                         {/* <FaXTwitter className="text-white/40 hover:text-white transition" />
