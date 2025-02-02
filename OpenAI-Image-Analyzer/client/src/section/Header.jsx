@@ -82,7 +82,7 @@ const Header = () => {
 
               <a href="" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
-                  <SiGoogledocs className="text-white h-5 w-5" />
+                  <SiGoogledocs className="text-white/70 hover:text-white h-5 w-5" />
                   <a
                     className="text-white/70 hover:text-white transition duration-300"
                     href=""
@@ -90,13 +90,13 @@ const Header = () => {
                     Docs
                   </a>
                 </div>
-                <GoArrowUpRight className="text-white h-8 w-8" />
+                <GoArrowUpRight className="text-white/70 hover:text-white h-8 w-8" />
               </a>              
               <hr className="w-full m-0 p-0 text-white/80" />
 
               <a href="https://github.com/" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
-                  <FaXTwitter className="text-white h-5 w-5" />
+                  <FaXTwitter className="text-white/70 hover:text-white h-5 w-5" />
                   <a
                     className="text-white/70 hover:text-white transition duration-300"
                     href="https://x.com/useSpectraAI"
@@ -104,13 +104,13 @@ const Header = () => {
                     Twitter(X)
                   </a>
                 </div>
-                <GoArrowUpRight className="text-white h-8 w-8" />
+                <GoArrowUpRight className="text-white/70 hover:text-white h-8 w-8" />
               </a>
               <hr className="w-full m-0 p-0 text-white/80" />
 
               <a href="#contact" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
-                  <GrContact className="text-white h-5 w-5" />
+                  <GrContact className="text-white/70 hover:text-white h-5 w-5" />
                   <a
                     className="text-white/70 hover:text-white transition duration-300"
                     href="#contact"
@@ -118,13 +118,13 @@ const Header = () => {
                     Contact Us
                   </a>
                 </div>
-                <GoArrowUpRight className="text-white h-8 w-8" />
+                <GoArrowUpRight className="text-white/70 hover:text-white h-8 w-8" />
               </a>
               <hr className="w-full m-0 p-0 text-white/80" />
 
               <a href="#features" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
-                  <MdDataUsage className="text-white h-5 w-5" />
+                  <MdDataUsage className="text-white/70 hover:text-white h-5 w-5" />
                   <a
                     className="text-white/70 hover:text-white transition duration-300"
                     href="#features"
@@ -132,7 +132,7 @@ const Header = () => {
                     Features
                   </a>
                 </div>
-                <GoArrowUpRight className="text-white h-8 w-8" />
+                <GoArrowUpRight className="text-white/70 hover:text-white h-8 w-8" />
               </a>
             </nav>
           </div>
