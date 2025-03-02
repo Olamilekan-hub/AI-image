@@ -16,8 +16,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        // Your deployed frontend
-        "https://sai-image-blue.vercel.app/",
+        "https://ai-image-blue.vercel.app", // Your deployed frontend
         "http://localhost:5173", // Local development
       ];
       if (!origin || allowedOrigins.includes(origin)) {
