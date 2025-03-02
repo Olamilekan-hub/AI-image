@@ -17,6 +17,7 @@ app.use(
     origin: (origin, callback) => {
       const allowedOrigins = [
         "https://ai-image-blue.vercel.app", // Your deployed frontend
+        "https://sai-image-blue.vercel.app/",
         "http://localhost:5173", // Local development
       ];
       if (!origin || allowedOrigins.includes(origin)) {

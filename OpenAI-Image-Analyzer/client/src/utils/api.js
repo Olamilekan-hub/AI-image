@@ -17,7 +17,8 @@ export const analyzeImageApi = async (message, filePath) => {
     headers: { "Content-Type": "application/json" },
   };
   const response = await fetch(
-    "https://ai-image-production.up.railway.app/openai",
+    // "https://ai-image-production.up.railway.app/openai",
+    "http://localhost:8000",
     options
   );
   return response.text();

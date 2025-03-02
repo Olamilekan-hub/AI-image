@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ImageAnalyzer from "./Pages/ImageAnalyzer";
-import Home from "./Pages/Home";
 import Home1 from "./Pages/Home1";
 
 const App = () => {
@@ -9,7 +7,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home1 />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home1 />} />
         <Route path="/analyze" element={<ImageAnalyzer />} />
         <Route path="*" element={<Home1 />} />
       </Routes>
