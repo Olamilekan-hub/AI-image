@@ -106,7 +106,8 @@ app.post("/openai", async (req, res) => {
     console.log(response.choices[0].message.content);
     // res.send(response.choices[0].message.content);
     // Format it properly (if it's JSON, you could stringify with indentation)
-    const formattedResponse = JSON.stringify(responseContent, null, 2);  // Add indentation (2 spaces)
+    // const formattedResponse = JSON.stringify(responseContent, null, 2);  
+    const formattedResponse = JSON.stringify(response.choices[0].message.content, null, 2); // Add indentation (2 spaces)
 
     console.log("Formatted Response:", formattedResponse);
 
