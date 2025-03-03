@@ -1,6 +1,6 @@
 import SurpriseButton from "./SurpriseButton";
 
-const QuestionPrompt = ({ surprise, response, loading }) => (
+const QuestionPrompt = ({ surprise, response, loading, upLoading }) => (
   <div className="flex gap-2 flex-col">
     <p className="text-white text-left">
       What do you want to know about the image?
@@ -10,6 +10,7 @@ const QuestionPrompt = ({ surprise, response, loading }) => (
         surprise={surprise}
         response={response}
         loading={loading}
+        upLoading={upLoading}
       />
     </div>
   </div>
