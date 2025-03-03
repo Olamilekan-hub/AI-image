@@ -110,6 +110,73 @@ app.post("/upload", (req, res) => {
 });
 
 // OpenAI endpoint: retrieves the file path from session or request and processes the image
+// app.post("/openai", async (req, res) => {
+//   try {
+//     const prompt = req.body.message;
+//     const fileId = req.body.fileId;
+    
+//     // Try multiple sources for the file path
+//     let filePath = null;
+    
+//     // First check session
+//     if (req.session.filePath) {
+//       filePath = req.session.filePath;
+//       console.log("Found file path in session:", filePath);
+//     } 
+//     // Then check fileId if provided
+//     else if (fileId && uploadedFiles.has(fileId)) {
+//       filePath = uploadedFiles.get(fileId);
+//       console.log("Found file path using fileId:", filePath);
+//     }
+//     // Finally check direct path in request
+//     else if (req.body.filePath) {
+//       filePath = req.body.filePath;
+//       console.log("Using file path from request body:", filePath);
+//     }
+
+//     if (!filePath) {
+//       console.error("File path not found in session or request");
+//       return res.status(400).json({ error: "No file uploaded!" });
+//     }
+
+//     // Verify file exists before processing
+//     if (!fs.existsSync(filePath)) {
+//       console.error("File does not exist at path:", filePath);
+//       return res.status(404).json({ error: "File not found!" });
+//     }
+
+//     const imageAsBase64 = fs.readFileSync(filePath, "base64");
+//     console.log("Image loaded successfully, base64 length:", imageAsBase64.length);
+
+//     const response = await openai.chat.completions.create({
+//       model: "gpt-4o-mini",
+//       messages: [
+//         {
+//           role: "user",
+//           content: [
+//             { type: "text", text: prompt },
+//             {
+//               type: "image_url",
+//               image_url: {
+//                 url: `data:image/*;base64,${imageAsBase64}`,
+//               },
+//             },
+//           ],
+//         },
+//       ],
+//     });
+
+//     // Send the raw content directly without JSON.stringify
+//     const responseContent = response.choices[0].message.content;
+//     console.log("Response content sent to client");
+//     res.send(responseContent);
+//   } catch (error) {
+//     console.error("Error in OpenAI endpoint:", error);
+//     res.status(500).json({ error: "Something went wrong!" });
+//   }
+// });
+
+// server.js - OpenAI endpoint with streaming
 app.post("/openai", async (req, res) => {
   try {
     const prompt = req.body.message;
@@ -148,7 +215,15 @@ app.post("/openai", async (req, res) => {
     const imageAsBase64 = fs.readFileSync(filePath, "base64");
     console.log("Image loaded successfully, base64 length:", imageAsBase64.length);
 
-    const response = await openai.chat.completions.create({
+    // Set up streaming headers
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive'
+    });
+
+    // Create streaming response
+    const stream = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
@@ -164,12 +239,21 @@ app.post("/openai", async (req, res) => {
           ],
         },
       ],
+      stream: true, // Enable streaming
     });
 
-    // Send the raw content directly without JSON.stringify
-    const responseContent = response.choices[0].message.content;
-    console.log("Response content sent to client");
-    res.send(responseContent);
+    // Process the stream
+    for await (const chunk of stream) {
+      const content = chunk.choices[0]?.delta?.content || '';
+      if (content) {
+        // Send each chunk as it arrives
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+      }
+    }
+
+    // End the stream
+    res.write('data: [DONE]\n\n');
+    res.end();
   } catch (error) {
     console.error("Error in OpenAI endpoint:", error);
     res.status(500).json({ error: "Something went wrong!" });
