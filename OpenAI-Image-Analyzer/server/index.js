@@ -31,7 +31,7 @@ app.use(
 
 // Logging middleware
 app.use((req, res, next) => {
-  console.log("Incoming request:", req.method, req.path, req.headers);
+  console.log("Incoming request:", req.method, req.path, req.headers.origin);
   next();
 });
 
@@ -39,12 +39,13 @@ app.use((req, res, next) => {
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "fallback-secret", // Replace with a strong secret in production
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
-      secure: false, // Set to true if using HTTPS in production
-      sameSite: "lax",
-    },
+      secure: process.env.NODE_ENV === 'production', // Only true in production
+      sameSite: "none", // Changed from "lax" for better cross-origin support
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
   })
 );
 
@@ -52,6 +53,9 @@ app.use(
 app.use(express.json());
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
+
+// Track uploaded files with a simple in-memory store as fallback for sessions
+const uploadedFiles = new Map();
 
 // Configure Multer storage for file uploads
 const storage = multer.diskStorage({
@@ -70,7 +74,7 @@ const storage = multer.diskStorage({
 // Create Multer middleware expecting a file with the field name "file"
 const upload = multer({ storage }).single("file");
 
-// Upload endpoint: stores the file path in the user's session
+// Upload endpoint: stores the file path in the user's session and returns fileId
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     if (err) {
@@ -81,28 +85,68 @@ app.post("/upload", (req, res) => {
       console.error("No file provided in the request");
       return res.status(400).json({ error: "No file uploaded!" });
     }
-    // Save the file path in the session for this user
+
+    // Generate a unique file ID
+    const fileId = Date.now().toString();
+    
+    // Save in both session and backup store
     req.session.filePath = req.file.path;
+    uploadedFiles.set(fileId, req.file.path);
+    
+    console.log("Session ID:", req.sessionID);
     console.log("File uploaded and stored in session:", req.file.path);
-    res
-      .status(200)
-      .json({ filePath: req.file.path, message: "File uploaded successfully!" });
+    console.log("File ID generated:", fileId);
+    
+    // Force session save
+    req.session.save(err => {
+      if (err) console.error("Session save error:", err);
+      res.status(200).json({ 
+        filePath: req.file.path, 
+        fileId: fileId,
+        message: "File uploaded successfully!" 
+      });
+    });
   });
 });
 
-// OpenAI endpoint: retrieves the file path from session and processes the image
+// OpenAI endpoint: retrieves the file path from session or request and processes the image
 app.post("/openai", async (req, res) => {
   try {
     const prompt = req.body.message;
-    const filePath = req.session.filePath;
+    const fileId = req.body.fileId;
+    
+    // Try multiple sources for the file path
+    let filePath = null;
+    
+    // First check session
+    if (req.session.filePath) {
+      filePath = req.session.filePath;
+      console.log("Found file path in session:", filePath);
+    } 
+    // Then check fileId if provided
+    else if (fileId && uploadedFiles.has(fileId)) {
+      filePath = uploadedFiles.get(fileId);
+      console.log("Found file path using fileId:", filePath);
+    }
+    // Finally check direct path in request
+    else if (req.body.filePath) {
+      filePath = req.body.filePath;
+      console.log("Using file path from request body:", filePath);
+    }
 
     if (!filePath) {
-      console.error("File path not set in session");
+      console.error("File path not found in session or request");
       return res.status(400).json({ error: "No file uploaded!" });
     }
 
+    // Verify file exists before processing
+    if (!fs.existsSync(filePath)) {
+      console.error("File does not exist at path:", filePath);
+      return res.status(404).json({ error: "File not found!" });
+    }
+
     const imageAsBase64 = fs.readFileSync(filePath, "base64");
-    console.log("Image as base64:", imageAsBase64);
+    console.log("Image loaded successfully, base64 length:", imageAsBase64.length);
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -127,7 +171,7 @@ app.post("/openai", async (req, res) => {
     console.log("Formatted Response:", formattedResponse);
     res.send(formattedResponse);
   } catch (error) {
-    console.error(error);
+    console.error("Error in OpenAI endpoint:", error);
     res.status(500).json({ error: "Something went wrong!" });
   }
 });
@@ -159,6 +203,6 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`Server running on port ${process.env.PORT || 8000}`);
 });

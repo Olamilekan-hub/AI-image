@@ -15,47 +15,72 @@ const ImageAnalyzer = () => {
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
   const [filePath, setFilePath] = useState("");
+  const [fileId, setFileId] = useState("");
   const [loading, setLoading] = useState(false);
   const { value, setValue, surprise } = useSurpriseOptions();
 
   const uploadImage = async (e) => {
     setResponse("");
+    setError("");
+    
+    if (!e.target.files || !e.target.files[0]) {
+      setError("Error: No file selected");
+      return;
+    }
+    
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     setImage(e.target.files[0]);
 
     try {
+      setLoading(true);
       const data = await uploadImageApi(formData);
+      setLoading(false);
+      
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
       if (data.filePath) {
         setFilePath(data.filePath);
+        setFileId(data.fileId);
+        console.log("File uploaded successfully:", data.filePath);
       } else {
         throw new Error("No file path in response");
       }
-    } catch (error){
-      console.error(error)
-      setError("Error: Something went wrong! Please try again");
+    } catch (error) {
+      setLoading(false);
+      console.error("Upload error:", error);
+      setError(`Error: ${error.message || "Something went wrong! Please try again"}`);
     }
   };
 
   const analyzeImage = async () => {
     setResponse("");
+    setError("");
+    
     if (!image) {
-      setError("Error: No image uploaded! Refresh");
+      setError("Error: No image uploaded! Please upload an image first.");
       return;
     }
+    
     if (!value) {
-      setError("Error: Please ask a question! Refresh");
+      setError("Error: Please ask a question about the image.");
       return;
     }
+    
     setLoading(true);
+    
     try {
-      const data = await analyzeImageApi(value, filePath);
+      // Pass both filePath and fileId for redundancy
+      const data = await analyzeImageApi(value, filePath, fileId);
       setResponse(data);
-      console.log(data);
-      setLoading(false);
-    } catch {
-      setLoading(false);
+      console.log("Analysis response:", data);
+    } catch (error) {
+      console.error("Analysis error:", error);
       setError("Error: Something went wrong! Please try again");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,6 +89,8 @@ const ImageAnalyzer = () => {
     setError("");
     setValue("");
     setImage(null);
+    setFilePath("");
+    setFileId("");
   };
 
   return (
