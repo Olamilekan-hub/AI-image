@@ -166,10 +166,10 @@ app.post("/openai", async (req, res) => {
       ],
     });
 
+    // Send the raw content directly without JSON.stringify
     const responseContent = response.choices[0].message.content;
-    const formattedResponse = JSON.stringify(responseContent, null, 2);
-    console.log("Formatted Response:", formattedResponse);
-    res.send(formattedResponse);
+    console.log("Response content sent to client");
+    res.send(responseContent);
   } catch (error) {
     console.error("Error in OpenAI endpoint:", error);
     res.status(500).json({ error: "Something went wrong!" });

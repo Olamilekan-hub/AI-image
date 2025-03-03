@@ -17,6 +17,7 @@ const ImageAnalyzer = () => {
   const [filePath, setFilePath] = useState("");
   const [fileId, setFileId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [upLoading, setUpLoading] = useState(false);
   const { value, setValue, surprise } = useSurpriseOptions();
 
   const uploadImage = async (e) => {
@@ -33,9 +34,9 @@ const ImageAnalyzer = () => {
     setImage(e.target.files[0]);
 
     try {
-      setLoading(true);
+      setUpLoading(true);
       const data = await uploadImageApi(formData);
-      setLoading(false);
+      setUpLoading(false);
       
       if (data.error) {
         throw new Error(data.error);
@@ -106,6 +107,7 @@ const ImageAnalyzer = () => {
               className=""
               image={image}
               uploadImage={uploadImage}
+              upLoading={upLoading}
             />
 
             <ExtraInfo />

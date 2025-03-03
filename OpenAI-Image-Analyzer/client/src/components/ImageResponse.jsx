@@ -1,10 +1,18 @@
 import { FaSpinner } from "react-icons/fa6";
 import ReactMarkdown from 'react-markdown';
 
-
-const ImageResponse = ({ response, error, loading }) => {
+const ImageResponse = ({ response, error, loading, upLoading }) => {
   return (
     <>
+      {upLoading && (
+        <p
+          id="upLoading"
+          className="flex items-center justify-center w-[50%] text-center w-full text-sm md:text-lg font-semibold bg-white/50 mb-8 text-black p-5 rounded-lg"
+        >
+          upLoading Image...
+          <FaSpinner className="animate-spin mr-2" />
+        </p>
+      )}
       {loading && (
         <p
           id="loading"
@@ -25,10 +33,9 @@ const ImageResponse = ({ response, error, loading }) => {
       {response && (
         <div
           id="response"
-          className="bg-white/70 text-black font-semibold text-sm md:text-md lg:text-lg mt-2 mb-8 rounded-lg p-5  w-full mdw-[80%] lg:w-[70%]"
+          className="bg-white/70 text-black font-semibold text-sm md:text-md lg:text-lg mt-2 mb-8 rounded-lg p-5 w-full mdw-[80%] lg:w-[70%]"
         >
-          <ReactMarkdown>{String(response)}</ReactMarkdown>
-
+          <ReactMarkdown>{response}</ReactMarkdown>
         </div>
       )}
     </>
