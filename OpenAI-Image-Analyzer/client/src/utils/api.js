@@ -51,8 +51,8 @@ export const analyzeImageApi = async (message, filePath, fileId, onChunk) => {
             const parsedData = JSON.parse(data);
             if (parsedData.content) {
               fullResponse += parsedData.content;
-              // Call the callback with the new chunk and the full response so far
-              onChunk(parsedData.content, fullResponse);
+              // Call the callback with the new chunk
+              onChunk(parsedData.content);
             }
           } catch (e) {
             console.error('Error parsing SSE data:', e);

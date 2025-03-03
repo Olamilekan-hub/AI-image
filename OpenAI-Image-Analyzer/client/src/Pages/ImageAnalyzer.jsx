@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "../section/Header";
 import Footer from "../section/Footer";
 import useSurpriseOptions from "../utils/useSurpriseOptions";
@@ -19,10 +19,14 @@ const ImageAnalyzer = () => {
   const [loading, setLoading] = useState(false);
   const [upLoading, setUpLoading] = useState(false);
   const { value, setValue, surprise } = useSurpriseOptions();
+  
+  // This ref will store the complete response as it comes in chunks
+  const completeResponseRef = useRef("");
 
   const uploadImage = async (e) => {
     setResponse("");
     setError("");
+    completeResponseRef.current = "";
     
     if (!e.target.files || !e.target.files[0]) {
       setError("Error: No file selected");
@@ -59,6 +63,7 @@ const ImageAnalyzer = () => {
   const analyzeImage = async () => {
     setResponse("");
     setError("");
+    completeResponseRef.current = "";
     
     if (!image) {
       setError("Error: No image uploaded! Please upload an image first.");
@@ -78,9 +83,11 @@ const ImageAnalyzer = () => {
         value, 
         filePath, 
         fileId, 
-        (chunk, fullResponse) => {
+        (chunk) => {
           // This callback will be called for each chunk received
-          setResponse(fullResponse);
+          completeResponseRef.current += chunk;
+          // Update the state to trigger the typing effect in ImageResponse
+          setResponse(completeResponseRef.current);
         }
       );
     } catch (error) {
@@ -98,6 +105,7 @@ const ImageAnalyzer = () => {
     setImage(null);
     setFilePath("");
     setFileId("");
+    completeResponseRef.current = "";
   };
 
   return (
@@ -129,7 +137,6 @@ const ImageAnalyzer = () => {
               surprise={surprise}
               response={response}
               loading={loading}
-              upLoading={upLoading}
             />
             
             <ImageQuestionInput
