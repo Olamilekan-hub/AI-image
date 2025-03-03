@@ -4,15 +4,14 @@ import { configDotenv } from "dotenv";
 import fs from "fs";
 import multer from "multer";
 import OpenAI from "openai";
-import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
 import session from "express-session";
 
-const app = express();
 configDotenv();
+const app = express();
 
-// Middleware for parsing JSON bodies
-app.use(bodyParser.json());
+// Use express.json() to parse JSON bodies
+app.use(express.json());
 
 // Configure CORS for allowed origins
 app.use(
@@ -23,7 +22,7 @@ app.use(
         "http://localhost:5173",            // Local development
       ];
       if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow request
+        callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
@@ -33,26 +32,28 @@ app.use(
   })
 );
 
-app.use(express.json());
-
 // Log each incoming request (for debugging)
 app.use((req, res, next) => {
   console.log("Incoming request:", req.method, req.path, req.headers);
   next();
 });
 
-// Configure session middleware
+// Configure session middleware with proper cookie settings for cross-origin requests
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "fallback-secret", // Use your secure secret here
+    secret: process.env.SESSION_SECRET || "fallback-secret", // Replace with your secure secret in production
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      secure: false, // Set to true if using HTTPS in production
+      sameSite: "lax",
+    },
   })
 );
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
-// Configure Multer storage
+// Configure Multer storage for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = "./public";
@@ -66,9 +67,10 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage }).single("file");
+// Create the Multer middleware expecting a file with the field name "file"
+const upload = multer({ storage }).single("file");
 
-// Upload endpoint: store file path in the user's session
+// Upload endpoint: stores the file path in the user's session
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     if (err) {
@@ -82,13 +84,15 @@ app.post("/upload", (req, res) => {
     // Save the file path in the session for this user
     req.session.filePath = req.file.path;
     console.log("File uploaded and stored in session:", req.file.path);
-    // Return the filePath in the response
-    res.status(200).json({ filePath: req.file.path, message: "File uploaded successfully!" });
+    // Return the filePath in the response (optional)
+    res.status(200).json({
+      filePath: req.file.path,
+      message: "File uploaded successfully!",
+    });
   });
 });
 
-
-// OpenAI endpoint: retrieve the file path from session and process the image
+// OpenAI endpoint: retrieves the file path from session and processes the image
 app.post("/openai", async (req, res) => {
   try {
     const prompt = req.body.message;
@@ -126,7 +130,7 @@ app.post("/openai", async (req, res) => {
     res.send(formattedResponse);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Something went wrong!" });
+    res.status(500).json({ error: "Something went wrong!" });
   }
 });
 
@@ -134,7 +138,7 @@ app.post("/openai", async (req, res) => {
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
   const transporter = nodemailer.createTransport({
-    service: "Gmail", // or your preferred email service
+    service: "Gmail",
     auth: {
       user: "spectraai57@gmail.com",
       pass: "ccyp uskk oalg luoi",
@@ -143,7 +147,7 @@ app.post("/send-email", async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: "spectraai57@gmail.com", // Your email address
+    to: "spectraai57@gmail.com",
     subject: `Message from ${name}`,
     text: message,
   };
