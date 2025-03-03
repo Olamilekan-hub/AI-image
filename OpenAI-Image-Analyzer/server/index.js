@@ -6,23 +6,26 @@ import multer from "multer";
 import OpenAI from "openai";
 import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
+import session from "express-session";
 
 const app = express();
 configDotenv();
 
+// Middleware for parsing JSON bodies
 app.use(bodyParser.json());
 
+// Configure CORS for allowed origins
 app.use(
   cors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        "https://ai-image-blue.vercel.app", // Your deployed frontend
-        "http://localhost:5173", // Local development
+        "https://ai-image-blue.vercel.app", // Deployed frontend
+        "http://localhost:5173",            // Local development
       ];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true); // Allow request
       } else {
-        callback(new Error("Not allowed by CORS")); // Reject request
+        callback(new Error("Not allowed by CORS"));
       }
     },
     methods: ["GET", "POST", "OPTIONS"],
@@ -32,13 +35,24 @@ app.use(
 
 app.use(express.json());
 
+// Log each incoming request (for debugging)
 app.use((req, res, next) => {
   console.log("Incoming request:", req.method, req.path, req.headers);
   next();
 });
 
+// Configure session middleware
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "fallback-secret", // Use your secure secret here
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
+// Configure Multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = "./public";
@@ -54,8 +68,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single("file");
 
-let filePath;
-
+// Upload endpoint: store file path in the user's session
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     if (err) {
@@ -66,20 +79,23 @@ app.post("/upload", (req, res) => {
       console.error("No file provided in the request");
       return res.status(400).json({ error: "No file uploaded!" });
     }
-
-    console.log("File uploaded successfully:", req.file);
-    filePath = req.file.path; // Save the file path globally
-    console.log("File path after upload:", req.file.path);
-    res.status(200).json({ filePath: req.file.path });
+    // Save the file path in the session for this user
+    req.session.filePath = req.file.path;
+    console.log("File uploaded and stored in session:", req.file.path);
+    // Return the filePath in the response
+    res.status(200).json({ filePath: req.file.path, message: "File uploaded successfully!" });
   });
 });
 
+
+// OpenAI endpoint: retrieve the file path from session and process the image
 app.post("/openai", async (req, res) => {
   try {
     const prompt = req.body.message;
+    const filePath = req.session.filePath;
 
     if (!filePath) {
-      console.error("File path not set");
+      console.error("File path not set in session");
       return res.status(400).json({ error: "No file uploaded!" });
     }
 
@@ -103,27 +119,22 @@ app.post("/openai", async (req, res) => {
         },
       ],
     });
-    console.log(response.choices[0].message.content);
+
     const responseContent = response.choices[0].message.content;
-    // Format it properly (if it's JSON, you could stringify with indentation)
-    const formattedResponse = JSON.stringify(responseContent, null, 2);  // Add indentation (2 spaces)
-
+    const formattedResponse = JSON.stringify(responseContent, null, 2);
     console.log("Formatted Response:", formattedResponse);
-
-    // If you want to return it in a preformatted block (good for HTML responses)
-    res.send(`${formattedResponse}`);  // This ensures the client sees the indentation in the response
+    res.send(formattedResponse);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
   }
 });
 
+// Email sending endpoint
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
-
-  // Set up Nodemailer transporter
   const transporter = nodemailer.createTransport({
-    service: "Gmail", // or your email service
+    service: "Gmail", // or your preferred email service
     auth: {
       user: "spectraai57@gmail.com",
       pass: "ccyp uskk oalg luoi",
@@ -132,7 +143,7 @@ app.post("/send-email", async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: "spectraai57@gmail.com", // Your email
+    to: "spectraai57@gmail.com", // Your email address
     subject: `Message from ${name}`,
     text: message,
   };

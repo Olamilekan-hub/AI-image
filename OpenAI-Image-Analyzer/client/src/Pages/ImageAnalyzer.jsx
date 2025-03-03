@@ -31,7 +31,8 @@ const ImageAnalyzer = () => {
       } else {
         throw new Error("No file path in response");
       }
-    } catch {
+    } catch (error){
+      console.error(error)
       setError("Error: Something went wrong! Please try again");
     }
   };
