@@ -10,9 +10,6 @@ import session from "express-session";
 configDotenv();
 const app = express();
 
-// Use express.json() to parse JSON bodies
-app.use(express.json());
-
 // Configure CORS for allowed origins
 app.use(
   cors({
@@ -32,16 +29,16 @@ app.use(
   })
 );
 
-// Log each incoming request (for debugging)
+// Logging middleware
 app.use((req, res, next) => {
   console.log("Incoming request:", req.method, req.path, req.headers);
   next();
 });
 
-// Configure session middleware with proper cookie settings for cross-origin requests
+// Configure session middleware with appropriate cookie settings for cross-origin requests
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "fallback-secret", // Replace with your secure secret in production
+    secret: process.env.SESSION_SECRET || "fallback-secret", // Replace with a strong secret in production
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -50,6 +47,9 @@ app.use(
     },
   })
 );
+
+// Use express.json() for JSON requests (this will ignore multipart/form-data requests)
+app.use(express.json());
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
@@ -67,7 +67,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// Create the Multer middleware expecting a file with the field name "file"
+// Create Multer middleware expecting a file with the field name "file"
 const upload = multer({ storage }).single("file");
 
 // Upload endpoint: stores the file path in the user's session
@@ -84,11 +84,9 @@ app.post("/upload", (req, res) => {
     // Save the file path in the session for this user
     req.session.filePath = req.file.path;
     console.log("File uploaded and stored in session:", req.file.path);
-    // Return the filePath in the response (optional)
-    res.status(200).json({
-      filePath: req.file.path,
-      message: "File uploaded successfully!",
-    });
+    res
+      .status(200)
+      .json({ filePath: req.file.path, message: "File uploaded successfully!" });
   });
 });
 
