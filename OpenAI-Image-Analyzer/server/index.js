@@ -176,7 +176,6 @@ app.post("/upload", (req, res) => {
 //   }
 // });
 
-// server.js - OpenAI endpoint with streaming
 app.post("/openai", async (req, res) => {
   try {
     const prompt = req.body.message;
@@ -215,14 +214,12 @@ app.post("/openai", async (req, res) => {
     const imageAsBase64 = fs.readFileSync(filePath, "base64");
     console.log("Image loaded successfully, base64 length:", imageAsBase64.length);
 
-    // Set up streaming headers
-    res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
-    });
+    // Set up SSE headers
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
 
-    // Create streaming response
+    // Create a streaming request to OpenAI
     const stream = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
@@ -246,7 +243,7 @@ app.post("/openai", async (req, res) => {
     for await (const chunk of stream) {
       const content = chunk.choices[0]?.delta?.content || '';
       if (content) {
-        // Send each chunk as it arrives
+        // Send the chunk to the client
         res.write(`data: ${JSON.stringify({ content })}\n\n`);
       }
     }
@@ -254,9 +251,15 @@ app.post("/openai", async (req, res) => {
     // End the stream
     res.write('data: [DONE]\n\n');
     res.end();
+    
   } catch (error) {
     console.error("Error in OpenAI endpoint:", error);
-    res.status(500).json({ error: "Something went wrong!" });
+    if (!res.headersSent) {
+      res.status(500).json({ error: "Something went wrong!" });
+    } else {
+      res.write(`data: ${JSON.stringify({ error: "Something went wrong!" })}\n\n`);
+      res.end();
+    }
   }
 });
 

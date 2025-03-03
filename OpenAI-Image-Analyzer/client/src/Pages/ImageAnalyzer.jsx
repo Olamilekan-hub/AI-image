@@ -10,7 +10,6 @@ import ExtraInfo from "../components/ExtraInfo";
 import QuestionPrompt from "../components/QuestionPrompt";
 import BgWrapper from "../section/bg";
 
-// ImageAnalyzer.jsx - Updated component with streaming support
 const ImageAnalyzer = () => {
   const [image, setImage] = useState(null);
   const [response, setResponse] = useState("");
@@ -19,11 +18,9 @@ const ImageAnalyzer = () => {
   const [fileId, setFileId] = useState("");
   const [loading, setLoading] = useState(false);
   const [upLoading, setUpLoading] = useState(false);
-  const [isStreaming, setIsStreaming] = useState(false);
   const { value, setValue, surprise } = useSurpriseOptions();
 
   const uploadImage = async (e) => {
-    // Same as before
     setResponse("");
     setError("");
     
@@ -74,16 +71,16 @@ const ImageAnalyzer = () => {
     }
     
     setLoading(true);
-    setIsStreaming(true);
     
     try {
-      // Pass a callback function to handle streaming chunks
+      // Use the new streaming API with a callback to update the response in real-time
       await analyzeImageApi(
         value, 
         filePath, 
         fileId, 
-        (streamedText) => {
-          setResponse(streamedText);
+        (chunk, fullResponse) => {
+          // This callback will be called for each chunk received
+          setResponse(fullResponse);
         }
       );
     } catch (error) {
@@ -91,7 +88,6 @@ const ImageAnalyzer = () => {
       setError("Error: Something went wrong! Please try again");
     } finally {
       setLoading(false);
-      setIsStreaming(false);
     }
   };
 
@@ -104,7 +100,6 @@ const ImageAnalyzer = () => {
     setFileId("");
   };
 
-  // Rest of the component remains the same
   return (
     <>
       <Header className="fixed sticky top-0" />
@@ -128,7 +123,6 @@ const ImageAnalyzer = () => {
               error={error}
               loading={loading}
               upLoading={upLoading}
-              isStreaming={isStreaming}
             />
 
             <QuestionPrompt

@@ -1,7 +1,7 @@
 import { FaSpinner } from "react-icons/fa6";
 import ReactMarkdown from 'react-markdown';
 
-const ImageResponse = ({ response, error, loading, upLoading, isStreaming }) => {
+const ImageResponse = ({ response, error, loading, upLoading }) => {
   return (
     <>
       {upLoading && (
@@ -9,16 +9,16 @@ const ImageResponse = ({ response, error, loading, upLoading, isStreaming }) => 
           id="upLoading"
           className="flex items-center justify-center w-[50%] text-center w-full text-sm md:text-lg font-semibold bg-white/50 mb-8 text-black p-5 rounded-lg"
         >
-          upLoading Image...
+          Uploading Image...
           <FaSpinner className="animate-spin ml-2" />
         </p>
       )}
-      {loading && (
+      {loading && !response && (
         <p
           id="loading"
           className="flex items-center justify-center w-[50%] text-center w-full text-sm md:text-lg font-semibold bg-white/50 mb-8 text-black p-5 rounded-lg"
         >
-          {isStreaming ? "Generating Analysis..." : "Preparing Analysis..."}
+          Generating Analysis...
           <FaSpinner className="animate-spin ml-2" />
         </p>
       )}
@@ -36,8 +36,8 @@ const ImageResponse = ({ response, error, loading, upLoading, isStreaming }) => 
           className="bg-white/70 text-black font-semibold text-sm md:text-md lg:text-lg mt-2 mb-8 rounded-lg p-5 w-full mdw-[80%] lg:w-[70%]"
         >
           <ReactMarkdown>{String(response)}</ReactMarkdown>
-          {isStreaming && (
-            <span className="inline-block animate-pulse">▋</span>
+          {loading && (
+            <span className="inline-block w-2 h-4 ml-1 bg-black animate-blink"></span>
           )}
         </div>
       )}
