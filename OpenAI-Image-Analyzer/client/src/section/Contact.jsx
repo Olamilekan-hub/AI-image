@@ -153,7 +153,7 @@ const Contact = () => {
                     htmlFor="username"
                     className="block text-sm text-white/50 my-2 "
                   >
-                    Email or Telegram/Twiter Username
+                    Email or Telegram/X Username
                   </label>
                   <input
                     type="text"

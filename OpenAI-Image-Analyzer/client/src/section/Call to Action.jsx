@@ -70,7 +70,7 @@ const Action = () => {
                       
                               <div className="relative lg:py-18">
                                         <h2 className="text-5xl md:text-6xl px-0.5  mx-auto tracking-tighter tect center font-medium text-center">AI Image Analysis for everyone.</h2>
-                                        <p className="text-center text-lg md:text-xl max-w-sm mx-auto text-white/70 px-4 mt-5 tracking-tight">Get Weekly updates about SpectraAI.</p>
+                                        <p className="text-center text-lg md:text-xl max-w-sm mx-auto text-white/70 px-4 mt-5 tracking-tight">Get Weekly updates about Spectra AI.</p>
                                         <div className="flex justify-center mt-5">
                                                   <Button>
                                                             <Link to="/">Subscribe</Link><IoIosArrowRoundForward />

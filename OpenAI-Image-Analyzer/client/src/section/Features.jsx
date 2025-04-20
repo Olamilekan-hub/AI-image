@@ -150,7 +150,7 @@ const Features = () => {
         </h2>
         <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto tracking-thight text-center mt-5">
           Get real time Image Analysis. Get any information you want about your
-          image effortlessly with SpectraAI, where Smart Technology meets
+          image effortlessly with Spectra AI, where Smart Technology meets
           user-friendly Image Analysis tools.
         </p>
 

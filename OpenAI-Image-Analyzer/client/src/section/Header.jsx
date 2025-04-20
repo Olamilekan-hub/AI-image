@@ -42,7 +42,7 @@ const Header = () => {
                   className="text-white/70 hover:text-white transition duration-300"
                   href="https://x.com/useSpectraAI"
                 >
-                  Twitter(X)
+                  X
                 </a>
                 <a
                   className="text-white/70 hover:text-white transition duration-300"
@@ -94,7 +94,7 @@ const Header = () => {
               </a>              
               <hr className="w-full m-0 p-0 text-white/80" />
 
-              <a href="https://github.com/" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
+              <a href="https://x.com/useSpectraAI" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
                   <FaXTwitter className="text-white/70 hover:text-white h-5 w-5" />
                   <a
