@@ -9,12 +9,12 @@
 //         <img
 //           src={URL.createObjectURL(image)}
 //           alt="uploaded image"
-//           className="w-full h-full object-cover text-center"
+//           className="object-cover w-full h-full text-center"
 //         />
 //       ) : (
 //         <label
 //           htmlFor="files"
-//           className="bg-white/60 text-black font-semibold text-sm p-2 rounded-lg md:text-lg hover:bg-white hover:text-black/50"
+//           className="p-2 text-sm font-semibold text-black rounded-lg bg-white/60 md:text-lg hover:bg-white hover:text-black/50"
 //         >
 //           Upload an Image
 //         </label>
@@ -31,12 +31,11 @@
 // };
 
 // export default ImageUpload;
-
 import { useState, useRef } from "react";
 import { FiUpload } from "react-icons/fi";
 import { FaSpinner } from "react-icons/fa6";
 
-const ImageUpload = ({ image, uploadImage, upLoading }) => {
+const ImageUpload = ({ image, imagePreviewUrl, uploadImage, upLoading }) => {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -52,7 +51,7 @@ const ImageUpload = ({ image, uploadImage, upLoading }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const event = { target: { files: e.dataTransfer.files } };
       uploadImage(event);
@@ -64,12 +63,12 @@ const ImageUpload = ({ image, uploadImage, upLoading }) => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center mt-10 mb-6">
+    <div className="flex flex-col items-center justify-center w-full mt-10 mb-6">
       <div
         className={`w-full md:w-4/5 lg:w-3/5 xl:w-1/2 aspect-video max-h-[30rem] relative rounded-xl overflow-hidden transition-all duration-300 ${
           isDragging
             ? "border-4 border-purple-500 shadow-lg shadow-purple-500/30"
-            : image
+            : imagePreviewUrl
             ? "border-2 border-white/40 shadow-md"
             : "border-2 border-dashed border-white/30"
         }`}
@@ -78,20 +77,19 @@ const ImageUpload = ({ image, uploadImage, upLoading }) => {
         onDrop={handleDrop}
         onClick={handleClick}
       >
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/70 pointer-events-none z-10"></div>
-        
-        {image ? (
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-black/0 to-black/70"></div>
+
+        {imagePreviewUrl ? (
           <>
             <img
-              src={URL.createObjectURL(image)}
+              src={imagePreviewUrl}
               alt="uploaded image"
-              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover w-full h-full transition-transform duration-700 hover:scale-105"
             />
-            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center z-20">
-              <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
-                <p className="text-white text-sm truncate">
-                  {image.name || "Uploaded image"}
+            <div className="absolute z-20 flex items-center justify-between bottom-4 left-4 right-4">
+              <div className="px-3 py-2 rounded-lg bg-black/70 backdrop-blur-sm">
+                <p className="text-sm text-white truncate">
+                  {image?.name || "Uploaded image"}
                 </p>
               </div>
               <button
@@ -99,7 +97,7 @@ const ImageUpload = ({ image, uploadImage, upLoading }) => {
                   e.stopPropagation();
                   handleClick();
                 }}
-                className="bg-purple-700 hover:bg-purple-600 text-white rounded-lg px-3 py-2 text-sm transition-colors duration-300"
+                className="px-3 py-2 text-sm text-white transition-colors duration-300 bg-purple-700 rounded-lg hover:bg-purple-600"
               >
                 Change
               </button>
@@ -109,20 +107,20 @@ const ImageUpload = ({ image, uploadImage, upLoading }) => {
           <div className="flex flex-col items-center justify-center w-full h-full bg-black/50 backdrop-blur-sm">
             {upLoading ? (
               <div className="flex flex-col items-center justify-center space-y-3">
-                <FaSpinner className="animate-spin text-purple-400 h-8 w-8" />
-                <p className="text-white font-medium">Processing...</p>
+                <FaSpinner className="w-8 h-8 text-purple-400 animate-spin" />
+                <p className="font-medium text-white">Processing...</p>
               </div>
             ) : (
               <>
-                <FiUpload className="text-white/80 h-10 w-10 mb-3" />
-                <p className="text-white font-medium text-lg mb-2">
+                <FiUpload className="w-10 h-10 mb-3 text-white/80" />
+                <p className="mb-2 text-lg font-medium text-white">
                   Upload an image to analyze
                 </p>
-                <p className="text-white/60 text-sm max-w-xs text-center">
+                <p className="max-w-xs text-sm text-center text-white/60">
                   Drag and drop or click to select a file
                 </p>
                 <button
-                  className="mt-4 bg-purple-700 hover:bg-purple-600 text-white py-2 px-4 rounded-lg transition-colors duration-300"
+                  className="px-4 py-2 mt-4 text-white transition-colors duration-300 bg-purple-700 rounded-lg hover:bg-purple-600"
                   onClick={handleClick}
                 >
                   Select Image
