@@ -12,9 +12,9 @@ const Footer = () => {
                                         <div className="font-medium md:text-lg">SPECTRA AI</div>
                               </div>
                                         <nav className="flex flex-col lg:flex-row gap-5 lg:gap-7 lg:flex-1 lg:justify-center">
-                                                  <a href="" className="text-white/70 hover:text-white text-xs md:text-sm transition">Docs</a>
+                                                  <a href="https://spectra-ai.gitbook.io/spectra-ai-docs" className="text-white/70 hover:text-white text-xs md:text-sm transition">Docs</a>
                                                   
-                                                  <a href="" className="text-white/70 hover:text-white text-xs md:text-sm transition">Contact Us</a>
+                                                  <a href="#contact" className="text-white/70 hover:text-white text-xs md:text-sm transition">Contact Us</a>
                                                   <a href="#features" className="text-white/70 hover:text-white text-xs md:text-sm transition">Features</a>
                                         </nav>
                               <div className="flex gap-5 lg:flex-1 lg:justify-end">

@@ -34,7 +34,7 @@ const Header = () => {
               <nav className="flex gap-8 text-sm items-center">
                 <a
                   className="text-white/70 hover:text-white transition duration-300"
-                  href=""
+                  href="https://spectra-ai.gitbook.io/spectra-ai-docs"
                 >
                   Docs
                 </a>
@@ -80,12 +80,12 @@ const Header = () => {
           <div className="md:hidden block w-full">
             <nav className="w-full flex flex-col text-sm items-center my-5">
 
-              <a href="" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
+              <a href="https://spectra-ai.gitbook.io/spectra-ai-docs" onClick={toggleMenu} className="flex justify-between w-full px-5 py-2 items-center">
                 <div className="flex gap-2">
                   <SiGoogledocs className="text-white/70 hover:text-white h-5 w-5" />
                   <a
                     className="text-white/70 hover:text-white transition duration-300"
-                    href=""
+                    href="https://spectra-ai.gitbook.io/spectra-ai-docs"
                   >
                     Docs
                   </a>
