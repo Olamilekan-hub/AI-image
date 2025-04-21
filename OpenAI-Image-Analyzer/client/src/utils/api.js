@@ -6,8 +6,8 @@ export const uploadImageApi = async (formData) => {
     credentials: "include",
   };
   const response = await fetch(
-    // "https://ai-image-production.up.railway.app/upload",
-    "http://localhost:8000/upload", //for local testing
+    "https://ai-image-production.up.railway.app/upload",
+    // "http://localhost:8000/upload", //for local testing
     options
   );
   return response.json();
@@ -23,7 +23,8 @@ export const analyzeImageApi = async (message, filePath, fileId, onChunk) => {
   
   try {
     const response = await fetch(
-      "http://localhost:8000/openai",
+      "https://ai-image-production.up.railway.app/openai",
+      // "http://localhost:8000/openai", //for local testing,
       options
     );
 
