@@ -1,4 +1,4 @@
-
+// bg.jsx
 import stars from "/images/stars.png";
 import { useEffect, useRef } from "react";
 import { useScroll, useTransform, motion, useMotionTemplate, useMotionValue } from "framer-motion";
