@@ -31,11 +31,12 @@
 // };
 
 // export default ImageUpload;
+
 import { useState, useRef } from "react";
 import { FiUpload } from "react-icons/fi";
 import { FaSpinner } from "react-icons/fa6";
 
-const ImageUpload = ({ image, imagePreviewUrl, uploadImage, upLoading }) => {
+const ImageUpload = ({ image, uploadImage, upLoading }) => {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -51,7 +52,7 @@ const ImageUpload = ({ image, imagePreviewUrl, uploadImage, upLoading }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
-
+    
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const event = { target: { files: e.dataTransfer.files } };
       uploadImage(event);
@@ -59,7 +60,19 @@ const ImageUpload = ({ image, imagePreviewUrl, uploadImage, upLoading }) => {
   };
 
   const handleClick = () => {
+    // Reset the file input value before opening it
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
     fileInputRef.current?.click();
+  };
+
+  const handleImageClick = (e) => {
+    if (!upLoading) {
+      handleClick();
+    } else {
+      e.preventDefault();
+    }
   };
 
   return (
@@ -68,39 +81,42 @@ const ImageUpload = ({ image, imagePreviewUrl, uploadImage, upLoading }) => {
         className={`w-full md:w-4/5 lg:w-3/5 xl:w-1/2 aspect-video max-h-[30rem] relative rounded-xl overflow-hidden transition-all duration-300 ${
           isDragging
             ? "border-4 border-purple-500 shadow-lg shadow-purple-500/30"
-            : imagePreviewUrl
+            : image
             ? "border-2 border-white/40 shadow-md"
             : "border-2 border-dashed border-white/30"
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={handleClick}
+        onClick={handleImageClick}
       >
-        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-black/0 to-black/70"></div>
-
-        {imagePreviewUrl ? (
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-black/0 to-black/40"></div>
+        
+        {image ? (
           <>
             <img
-              src={imagePreviewUrl}
+              src={typeof image === 'string' ? image : URL.createObjectURL(image)}
               alt="uploaded image"
               className="object-cover w-full h-full transition-transform duration-700 hover:scale-105"
             />
             <div className="absolute z-20 flex items-center justify-between bottom-4 left-4 right-4">
               <div className="px-3 py-2 rounded-lg bg-black/70 backdrop-blur-sm">
                 <p className="text-sm text-white truncate">
-                  {image?.name || "Uploaded image"}
+                  {image.name || "Uploaded image"}
                 </p>
               </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleClick();
-                }}
-                className="px-3 py-2 text-sm text-white transition-colors duration-300 bg-purple-700 rounded-lg hover:bg-purple-600"
-              >
-                Change
-              </button>
+              {!upLoading && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClick();
+                  }}
+                  className="px-3 py-2 text-sm text-white transition-colors duration-300 bg-purple-700 rounded-lg hover:bg-purple-600"
+                >
+                  Change
+                </button>
+              )}
             </div>
           </>
         ) : (
@@ -121,7 +137,10 @@ const ImageUpload = ({ image, imagePreviewUrl, uploadImage, upLoading }) => {
                 </p>
                 <button
                   className="px-4 py-2 mt-4 text-white transition-colors duration-300 bg-purple-700 rounded-lg hover:bg-purple-600"
-                  onClick={handleClick}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClick();
+                  }}
                 >
                   Select Image
                 </button>

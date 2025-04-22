@@ -158,7 +158,7 @@
 
 // export default ImageAnalyzer;
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Header from "../section/Header";
 import Footer from "../section/Footer";
 import useSurpriseOptions from "../utils/useSurpriseOptions";
@@ -183,32 +183,42 @@ const ImageAnalyzer = () => {
   
   // This ref will store the complete response as it comes in chunks
   const completeResponseRef = useRef("");
-
   const uploadImage = async (e) => {
+    // Clear previous states
     setResponse("");
     setError("");
     completeResponseRef.current = "";
-
+    
     if (!e.target.files || !e.target.files[0]) {
       setError("Error: No file selected");
       return;
     }
-
-    const file = e.target.files[0];
-    setImage(file);
-    const previewUrl = URL.createObjectURL(file);
-    setImagePreviewUrl(previewUrl);
-
+    
+    // Store the file
+    const fileToUpload = e.target.files[0];
+    
+    // Set loading state first
+    setUpLoading(true);
+    
+    // Clear previous file data
+    setFilePath("");
+    setFileId("");
+    
+    // Set image preview
+    setImage(fileToUpload);
+    
+    // Create a new FormData instance for each upload
     const formData = new FormData();
-    formData.append("file", file);
-
+    formData.append("file", fileToUpload);
+    
     try {
-      setUpLoading(true);
+      // Wait for the API response
       const data = await uploadImageApi(formData);
-      setUpLoading(false);
-
-      if (data.error) throw new Error(data.error);
-
+      
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
       if (data.filePath) {
         setFilePath(data.filePath);
         setFileId(data.fileId);
@@ -217,20 +227,13 @@ const ImageAnalyzer = () => {
         throw new Error("No file path in response");
       }
     } catch (error) {
-      setUpLoading(false);
       console.error("Upload error:", error);
       setError(`Error uploading: ${error.message || "Please try again"}`);
+      // Don't clear the image preview here so user can see what they tried to upload
+    } finally {
+      setUpLoading(false);
     }
   };
-
-  // Cleanup object URL
-  useEffect(() => {
-    return () => {
-      if (imagePreviewUrl) {
-        URL.revokeObjectURL(imagePreviewUrl);
-      }
-    };
-  }, [imagePreviewUrl]);
   
   const analyzeImage = async () => {
     setResponse("");
@@ -288,13 +291,11 @@ const ImageAnalyzer = () => {
             </div>
             
             <div className="grid grid-cols-1 gap-6">
-            <ImageUpload
-              image={image}
-              imagePreviewUrl={imagePreviewUrl}
-              uploadImage={uploadImage}
-              upLoading={upLoading}
-            />
-            {error && <p className="mt-2 text-red-500">{error}</p>}
+              <ImageUpload
+                image={image}
+                uploadImage={uploadImage}
+                upLoading={upLoading}
+              />
               
               <ExtraInfo />
               

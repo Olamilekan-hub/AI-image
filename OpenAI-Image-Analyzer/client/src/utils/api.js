@@ -1,16 +1,30 @@
 //api.js
 export const uploadImageApi = async (formData) => {
-  const options = {
-    method: "POST",
-    body: formData,
-    credentials: "include",
-  };
-  const response = await fetch(
-    "https://ai-image-production.up.railway.app/upload",
-    // "http://localhost:8000/upload", //for local testing
-    options
-  );
-  return response.json();
+  try {
+    const options = {
+      method: "POST",
+      body: formData,
+      credentials: "include",
+      // Add timeout to prevent hanging requests
+      timeout: 30000,
+    };
+    
+    // Add a unique query parameter to prevent caching
+    const url = `https://ai-image-production.up.railway.app/upload?nocache=${Date.now()}`;
+    // const url = `http://localhost:8000/upload?nocache=${Date.now()}`; // for local testing
+    
+    const response = await fetch(url, options);
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `Server error: ${response.status}`);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error("API error:", error);
+    return { error: error.message || "Network error occurred" };
+  }
 };
 
 export const analyzeImageApi = async (message, filePath, fileId, onChunk) => {
