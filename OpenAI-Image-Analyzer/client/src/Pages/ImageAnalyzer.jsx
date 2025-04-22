@@ -299,7 +299,7 @@ const ImageAnalyzer = () => {
             <div className="mb-8 text-center">
               <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">
-                  SpectraAI
+                  Spectra AI
                 </span>{" "}
                 Image Analyzer
               </h1>
@@ -532,7 +532,7 @@ export default ImageAnalyzer;
 //             <div className="mb-8 text-center">
 //               <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl">
 //                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">
-//                   SpectraAI
+//                   Spectra AI
 //                 </span>{" "}
 //                 Image Analyzer
 //               </h1>

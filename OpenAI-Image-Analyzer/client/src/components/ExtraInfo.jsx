@@ -3,7 +3,7 @@
 // const ExtraInfo = () => (
 //   <p
 //     id="extra-info"
-//     className="text-center text-white/80 hover:text-white font-medium text-sm  p-2"
+//     className="p-2 text-sm font-medium text-center text-white/80 hover:text-white"
 //   >
 //     Upload your image to discover its underlying technology, let SpectraAI
 //     analyze it for you.
@@ -16,10 +16,11 @@ import { RiLightbulbFlashLine } from "react-icons/ri";
 
 const ExtraInfo = () => {
   return (
-    <div className="w-full bg-indigo-900/20 backdrop-blur-sm border border-indigo-500/30 rounded-lg p-4 flex items-center justify-center my-6">
-      <RiLightbulbFlashLine className="text-indigo-400 h-5 w-5 mr-3 flex-shrink-0" />
-      <p className="text-white/90 text-sm md:text-base">
-        Upload your image to discover its underlying technology. SpectraAI will analyze and provide insights about your image.
+    <div className="flex items-center justify-center w-full p-4 my-6 border rounded-lg bg-indigo-900/20 backdrop-blur-sm border-indigo-500/30">
+      <RiLightbulbFlashLine className="flex-shrink-0 w-5 h-5 mr-3 text-indigo-400" />
+      <p className="text-sm text-white/90 md:text-base">
+        Upload your image to discover its underlying technology. Spectra
+        AI will analyze and provide insights about your image.
       </p>
     </div>
   );
@@ -31,14 +32,14 @@ export default ExtraInfo;
 
 // const ExtraInfo = ({ promptCount = 0 }) => {
 //   return (
-//     <div className="w-full bg-indigo-900/20 backdrop-blur-sm border border-indigo-500/30 rounded-lg p-4 flex items-center justify-center my-6">
-//       <RiLightbulbFlashLine className="text-indigo-400 h-5 w-5 mr-3 flex-shrink-0" />
-//       <div className="text-white/90 text-sm md:text-base flex-grow">
+//     <div className="flex items-center justify-center w-full p-4 my-6 border rounded-lg bg-indigo-900/20 backdrop-blur-sm border-indigo-500/30">
+//       <RiLightbulbFlashLine className="flex-shrink-0 w-5 h-5 mr-3 text-indigo-400" />
+//       <div className="flex-grow text-sm text-white/90 md:text-base">
 //         <p>
 //           Upload your image to discover its underlying technology. SpectraAI will analyze and provide insights about your image.
 //         </p>
 //         {promptCount > 0 && (
-//           <p className="text-indigo-300 text-sm mt-1">
+//           <p className="mt-1 text-sm text-indigo-300">
 //             You've used {promptCount} out of 10 available questions for this session.
 //           </p>
 //         )}
