@@ -233,7 +233,7 @@ const ImageResponse = ({ response, error, loading, upLoading }) => {
         <div className="flex items-center justify-center w-full px-4 py-5 transition-all duration-300 border rounded-lg shadow-lg bg-indigo-900/30 backdrop-blur-sm border-indigo-500/30">
           <div className="flex items-center space-x-3">
             <FaSpinner className="w-5 h-5 text-indigo-400 animate-spin" />
-            <p className="font-medium text-white">SpectraAI is analyzing your image...</p>
+            <p className="font-medium text-white">Spectra AI is analyzing your image...</p>
           </div>
         </div>
       )}
