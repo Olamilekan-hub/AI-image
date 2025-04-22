@@ -11,25 +11,33 @@ configDotenv();
 const app = express();
 
 // Configure CORS for allowed origins
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        "https://www.spectra-ai.space", // Deployed frontend
-        "https://spectra-ai.space", // Deployed frontend
-        "https://ai-image-blue.vercel.app", // Deployed frontend
-        "http://localhost:5173",            // Local development
-      ];
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigins = [
+      "https://spectra-ai.space",
+      "https://www.spectra-ai.space",
+      "https://ai-image-blue.vercel.app",
+      "http://localhost:1373",
+      "https://spectrai.ai" // Add any other domains you need
+    ];
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("Blocked origin:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
+}));
+
+// For pre-flight checks - this is IMPORTANT for complex requests
+app.options('*', cors());
 
 // Logging middleware
 app.use((req, res, next) => {
