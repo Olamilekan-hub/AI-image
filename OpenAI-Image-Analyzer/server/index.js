@@ -16,7 +16,7 @@ const MIN_WORKERS = 1;
 const MAX_WORKERS = Math.min(os.cpus().length, 2);
 const SCALE_INTERVAL = 30000; // 30 seconds
 const SCALE_UP_THRESHOLD = 500;  // Example: 500+ reqs per 30 sec to scale up
-const SCALE_DOWN_THRESHOLD = 5 0; // Example: <100 reqs per 30 sec to scale down
+const SCALE_DOWN_THRESHOLD = 50; // Example: <100 reqs per 30 sec to scale down
 
 let requestCount = 0;
 
