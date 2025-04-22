@@ -16,6 +16,7 @@ app.use(
     origin: (origin, callback) => {
       const allowedOrigins = [
         "https://www.spectra-ai.space/", // Deployed frontend
+        "https://spectra-ai.space/", // Deployed frontend
         "https://ai-image-blue.vercel.app", // Deployed frontend
         "http://localhost:5173",            // Local development
       ];
