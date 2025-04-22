@@ -183,12 +183,14 @@ const ImageAnalyzer = () => {
   
   // This ref will store the complete response as it comes in chunks
   const completeResponseRef = useRef("");
+  
   const uploadImage = async (e) => {
     // Clear previous states
     setResponse("");
     setError("");
     completeResponseRef.current = "";
     
+    // Make sure we have a file
     if (!e.target.files || !e.target.files[0]) {
       setError("Error: No file selected");
       return;
@@ -196,6 +198,18 @@ const ImageAnalyzer = () => {
     
     // Store the file
     const fileToUpload = e.target.files[0];
+    
+    // Reset file input value to ensure it triggers again next time
+    if (e.target) {
+      e.target.value = '';
+    }
+    
+    // Log file details for debugging
+    console.log("File selected:", {
+      name: fileToUpload.name,
+      type: fileToUpload.type,
+      size: fileToUpload.size
+    });
     
     // Set loading state first
     setUpLoading(true);
@@ -207,13 +221,18 @@ const ImageAnalyzer = () => {
     // Set image preview
     setImage(fileToUpload);
     
-    // Create a new FormData instance for each upload
-    const formData = new FormData();
-    formData.append("file", fileToUpload);
-    
     try {
-      // Wait for the API response
+      // Create a new FormData instance for each upload
+      const formData = new FormData();
+      formData.append("file", fileToUpload);
+      
+      // Log FormData content (note: can't directly view content)
+      console.log("FormData created with file");
+      
+      // Perform the upload
+      console.log("Calling uploadImageApi...");
       const data = await uploadImageApi(formData);
+      console.log("Upload API response:", data);
       
       if (data.error) {
         throw new Error(data.error);
@@ -229,7 +248,6 @@ const ImageAnalyzer = () => {
     } catch (error) {
       console.error("Upload error:", error);
       setError(`Error uploading: ${error.message || "Please try again"}`);
-      // Don't clear the image preview here so user can see what they tried to upload
     } finally {
       setUpLoading(false);
     }

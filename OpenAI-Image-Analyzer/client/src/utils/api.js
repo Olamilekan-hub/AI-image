@@ -1,28 +1,55 @@
-//api.js
+// api.js
 export const uploadImageApi = async (formData) => {
   try {
+    console.log("Starting file upload...");
+    
     const options = {
       method: "POST",
       body: formData,
       credentials: "include",
-      // Add timeout to prevent hanging requests
-      timeout: 30000,
+      // Skip timeout in the fetch options
     };
     
-    // Add a unique query parameter to prevent caching
-    const url = `https://ai-image-production.up.railway.app/upload?nocache=${Date.now()}`;
-    // const url = `http://localhost:8000/upload?nocache=${Date.now()}`; // for local testing
+    // Add cache-busting parameter
+    const timestamp = Date.now();
+    const url = `https://ai-image-production.up.railway.app/upload?t=${timestamp}`;
     
-    const response = await fetch(url, options);
+    console.log(`Sending request to ${url}`);
     
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || `Server error: ${response.status}`);
+    // Set up an AbortController for timeout control
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal
+      });
+      
+      // Clear the timeout since we got a response
+      clearTimeout(timeoutId);
+      
+      if (!response.ok) {
+        // Try to get error info from the response
+        const errorText = await response.text();
+        throw new Error(`Server error (${response.status}): ${errorText}`);
+      }
+      
+      const data = await response.json();
+      console.log("Upload successful, received data:", data);
+      return data;
+    } catch (fetchError) {
+      // Clear the timeout if fetch failed
+      clearTimeout(timeoutId);
+      
+      if (fetchError.name === 'AbortError') {
+        throw new Error('Request timed out. Please try again.');
+      }
+      
+      throw fetchError;
     }
-    
-    return response.json();
   } catch (error) {
-    console.error("API error:", error);
+    console.error("Upload API error:", error);
     return { error: error.message || "Network error occurred" };
   }
 };

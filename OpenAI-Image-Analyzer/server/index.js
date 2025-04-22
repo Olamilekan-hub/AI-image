@@ -74,38 +74,72 @@ const storage = multer.diskStorage({
 // Create Multer middleware expecting a file with the field name "file"
 const upload = multer({ storage }).single("file");
 
-// Upload endpoint: stores the file path in the user's session and returns fileId
+// Upload endpoint with improved error handling
 app.post("/upload", (req, res) => {
-  upload(req, res, (err) => {
+  console.log("Upload request received");
+  
+  // Add CORS headers (if needed)
+  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  upload(req, res, function(err) {
     if (err) {
       console.error("Multer error:", err);
-      return res.status(500).json({ error: "File upload failed!" });
+      return res.status(500).json({ error: `File upload failed: ${err.message}` });
     }
+    
     if (!req.file) {
       console.error("No file provided in the request");
       return res.status(400).json({ error: "No file uploaded!" });
     }
-
+    
+    console.log("File received:", {
+      filename: req.file.filename,
+      originalname: req.file.originalname,
+      size: req.file.size
+    });
+    
     // Generate a unique file ID
     const fileId = Date.now().toString();
     
-    // Save in both session and backup store
-    req.session.filePath = req.file.path;
-    uploadedFiles.set(fileId, req.file.path);
-    
-    console.log("Session ID:", req.sessionID);
-    console.log("File uploaded and stored in session:", req.file.path);
-    console.log("File ID generated:", fileId);
-    
-    // Force session save
-    req.session.save(err => {
-      if (err) console.error("Session save error:", err);
+    try {
+      // Save in both session and backup store
+      req.session.filePath = req.file.path;
+      uploadedFiles.set(fileId, req.file.path);
+      
+      console.log("Session ID:", req.sessionID);
+      console.log("File uploaded and stored in session:", req.file.path);
+      console.log("File ID generated:", fileId);
+      
+      // Force session save
+      req.session.save(err => {
+        if (err) {
+          console.error("Session save error:", err);
+          // Continue anyway since we're using the backup store
+        }
+        
+        res.status(200).json({ 
+          filePath: req.file.path, 
+          fileId: fileId,
+          message: "File uploaded successfully!" 
+        });
+      });
+    } catch (sessionError) {
+      console.error("Session error:", sessionError);
+      
+      // Even if session fails, we can still use the backup store
       res.status(200).json({ 
         filePath: req.file.path, 
         fileId: fileId,
-        message: "File uploaded successfully!" 
+        message: "File uploaded successfully (session backup)!" 
       });
-    });
+    }
   });
 });
 
